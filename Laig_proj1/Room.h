@@ -16,6 +16,12 @@ public:
         this->z=z;
     }
     vector3d(){}
+    void normalize(){
+        double modulo=sqrt(pow(x,2.0)+pow(y, 2.0)+pow(z, 2.0));
+        x=x/modulo;
+        y=y/modulo;
+        z=z/modulo;
+    }
     vector3d operator-(const vector3d & b) const{
         return vector3d(this->x-b.x,this->y-b.y,this->z-b.z);
     }

@@ -40,7 +40,7 @@ vector3d normalvec(vector3d & p1, vector3d & p2, vector3d & p3) {
     vector3d u= p2-p3;
     vector3d v= p3-p1;
     vector3d normal;
-    normal.x=(u.x*v.z)-(u.z*v.y);
+    normal.x=(u.y*v.z)-(u.z*v.y);
     normal.y=(u.z*v.x)-(u.x*v.z);
     normal.z=(u.x*v.y)-(u.y*v.z);
     return normal;
@@ -94,8 +94,11 @@ void draw_curve_wall(double x, double y, double z, int n_steps){
 		double new_x=x+sin(i*z_step*wave_lenght)*10;
 		double new_z=z+z_step*i;
         vector3d p1(new_x, y,  new_z);
+        p1.normalize();
         vector3d p2(new_x, y+room_height,  new_z);
+        p2.normalize();
         vector3d p3(x_ant,y+room_height , z_ant);
+        p3.normalize();
         normal=normalvec(p1,p2,p3);
 		//printf("anteriores: x:%f z:%f novas: x:%f z:%f\n",x_ant,z_ant,new_x,new_z);
 		glBegin(GL_POLYGON);
