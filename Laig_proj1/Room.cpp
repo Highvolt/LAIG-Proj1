@@ -42,7 +42,7 @@ vector3d normalvec(vector3d & p1, vector3d & p2, vector3d & p3) {
     vector3d normal;
     normal.x=(u.y*v.z)-(u.z*v.y);
     normal.y=(u.z*v.x)-(u.x*v.z);
-    normal.z=(u.x*v.y)-(u.y*v.z);
+    normal.z=(u.x*v.y)-(u.y*v.x);
     normal.normalize();
     return normal;
 }
