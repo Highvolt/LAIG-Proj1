@@ -37,17 +37,18 @@ Returning Normal
 */
 
 vector3d normalvec(vector3d & p1, vector3d & p2, vector3d & p3) {
-    vector3d u= p2-p3;
+    vector3d u= p2-p1;
     vector3d v= p3-p1;
     vector3d normal;
     normal.x=(u.y*v.z)-(u.z*v.y);
     normal.y=(u.z*v.x)-(u.x*v.z);
     normal.z=(u.x*v.y)-(u.y*v.z);
+    normal.normalize();
     return normal;
 }
 
 void draw_backwall(double x, double y, double z){
-	
+
 //canto esquerdo
 	glBegin(GL_POLYGON);
 		glNormal3d(0.0,0.0,1.0);  // esta normal fica comum aos 4 vertices
