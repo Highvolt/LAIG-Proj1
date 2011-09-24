@@ -319,8 +319,8 @@ void inicializacao()
 
 
 	// Face Culling para aumentar a velocidade
-	//glEnable(GL_CULL_FACE);
-	//glCullFace(GL_BACK);		// GL_FRONT, GL_BACK, GL_FRONT_AND_BACK
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);		// GL_FRONT, GL_BACK, GL_FRONT_AND_BACK
 
 
 	// Define que modelo de iluminacao utilizar; consultar o manual de referencia
