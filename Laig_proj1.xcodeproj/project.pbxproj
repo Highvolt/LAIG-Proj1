@@ -7,11 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2CF73729142CD30300B87A49 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF73728142CD30300B87A49 /* main.cpp */; };
+		2C69D2BE142E33690002DF08 /* clamp.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C69D2BB142E31C60002DF08 /* clamp.bmp */; };
+		2C69D2BF142E33690002DF08 /* feup.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CF73732142CD33900B87A49 /* feup.bmp */; };
+		2C69D2C0142E33690002DF08 /* mandril.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CF73734142CD33900B87A49 /* mandril.bmp */; };
+		2C69D2C1142E33690002DF08 /* tile.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CF73740142CD33900B87A49 /* tile.bmp */; };
 		2CF7372B142CD30300B87A49 /* Laig_proj1.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CF7372A142CD30300B87A49 /* Laig_proj1.1 */; };
+		2CF73741142CD33900B87A49 /* MainCode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF73733142CD33900B87A49 /* MainCode.cpp */; };
+		2CF73742142CD33900B87A49 /* PaperSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF73735142CD33900B87A49 /* PaperSheet.cpp */; };
+		2CF73743142CD33900B87A49 /* Printer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF73737142CD33900B87A49 /* Printer.cpp */; };
+		2CF73744142CD33900B87A49 /* RGBpixmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7373A142CD33900B87A49 /* RGBpixmap.cpp */; };
+		2CF73745142CD33900B87A49 /* Robot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7373C142CD33900B87A49 /* Robot.cpp */; };
+		2CF73746142CD33900B87A49 /* Room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF7373E142CD33900B87A49 /* Room.cpp */; };
+		2CF73748142CD3B000B87A49 /* GLUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF73747142CD3B000B87A49 /* GLUI.framework */; };
+		2CF7374A142CD48600B87A49 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF73749142CD48600B87A49 /* OpenGL.framework */; };
+		2CF7374C142CD48C00B87A49 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF7374B142CD48C00B87A49 /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2C69D2BD142E33580002DF08 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				2C69D2BE142E33690002DF08 /* clamp.bmp in CopyFiles */,
+				2C69D2BF142E33690002DF08 /* feup.bmp in CopyFiles */,
+				2C69D2C0142E33690002DF08 /* mandril.bmp in CopyFiles */,
+				2C69D2C1142E33690002DF08 /* tile.bmp in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2CF73722142CD30300B87A49 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -25,9 +50,27 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C69D2BB142E31C60002DF08 /* clamp.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = clamp.bmp; path = Laig_proj1/clamp.bmp; sourceTree = "<group>"; };
 		2CF73724142CD30300B87A49 /* Laig_proj1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Laig_proj1; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CF73728142CD30300B87A49 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2CF7372A142CD30300B87A49 /* Laig_proj1.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Laig_proj1.1; sourceTree = "<group>"; };
+		2CF73732142CD33900B87A49 /* feup.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = feup.bmp; path = Laig_proj1/feup.bmp; sourceTree = "<group>"; };
+		2CF73733142CD33900B87A49 /* MainCode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainCode.cpp; sourceTree = "<group>"; };
+		2CF73734142CD33900B87A49 /* mandril.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = mandril.bmp; path = Laig_proj1/mandril.bmp; sourceTree = "<group>"; };
+		2CF73735142CD33900B87A49 /* PaperSheet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PaperSheet.cpp; sourceTree = "<group>"; };
+		2CF73736142CD33900B87A49 /* PaperSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaperSheet.h; sourceTree = "<group>"; };
+		2CF73737142CD33900B87A49 /* Printer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Printer.cpp; sourceTree = "<group>"; };
+		2CF73738142CD33900B87A49 /* Printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Printer.h; sourceTree = "<group>"; };
+		2CF73739142CD33900B87A49 /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
+		2CF7373A142CD33900B87A49 /* RGBpixmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RGBpixmap.cpp; sourceTree = "<group>"; };
+		2CF7373B142CD33900B87A49 /* RGBpixmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGBpixmap.h; sourceTree = "<group>"; };
+		2CF7373C142CD33900B87A49 /* Robot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Robot.cpp; sourceTree = "<group>"; };
+		2CF7373D142CD33900B87A49 /* Robot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Robot.h; sourceTree = "<group>"; };
+		2CF7373E142CD33900B87A49 /* Room.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Room.cpp; sourceTree = "<group>"; };
+		2CF7373F142CD33900B87A49 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		2CF73740142CD33900B87A49 /* tile.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = tile.bmp; path = Laig_proj1/tile.bmp; sourceTree = "<group>"; };
+		2CF73747142CD3B000B87A49 /* GLUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUI.framework; path = Library/Frameworks/GLUI.framework; sourceTree = SDKROOT; };
+		2CF73749142CD48600B87A49 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		2CF7374B142CD48C00B87A49 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +78,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF7374C142CD48C00B87A49 /* GLUT.framework in Frameworks */,
+				2CF7374A142CD48600B87A49 /* OpenGL.framework in Frameworks */,
+				2CF73748142CD3B000B87A49 /* GLUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C69D2BC142E33250002DF08 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C69D2BB142E31C60002DF08 /* clamp.bmp */,
+				2CF73732142CD33900B87A49 /* feup.bmp */,
+				2CF73734142CD33900B87A49 /* mandril.bmp */,
+				2CF73740142CD33900B87A49 /* tile.bmp */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		2CF73719142CD30300B87A49 = {
 			isa = PBXGroup;
 			children = (
+				2CF7374B142CD48C00B87A49 /* GLUT.framework */,
+				2CF73749142CD48600B87A49 /* OpenGL.framework */,
+				2CF73747142CD3B000B87A49 /* GLUI.framework */,
 				2CF73727142CD30300B87A49 /* Laig_proj1 */,
 				2CF73725142CD30300B87A49 /* Products */,
+				2C69D2BC142E33250002DF08 /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,7 +121,18 @@
 		2CF73727142CD30300B87A49 /* Laig_proj1 */ = {
 			isa = PBXGroup;
 			children = (
-				2CF73728142CD30300B87A49 /* main.cpp */,
+				2CF73733142CD33900B87A49 /* MainCode.cpp */,
+				2CF73735142CD33900B87A49 /* PaperSheet.cpp */,
+				2CF73736142CD33900B87A49 /* PaperSheet.h */,
+				2CF73737142CD33900B87A49 /* Printer.cpp */,
+				2CF73738142CD33900B87A49 /* Printer.h */,
+				2CF73739142CD33900B87A49 /* resource.h */,
+				2CF7373A142CD33900B87A49 /* RGBpixmap.cpp */,
+				2CF7373B142CD33900B87A49 /* RGBpixmap.h */,
+				2CF7373C142CD33900B87A49 /* Robot.cpp */,
+				2CF7373D142CD33900B87A49 /* Robot.h */,
+				2CF7373E142CD33900B87A49 /* Room.cpp */,
+				2CF7373F142CD33900B87A49 /* Room.h */,
 				2CF7372A142CD30300B87A49 /* Laig_proj1.1 */,
 			);
 			path = Laig_proj1;
@@ -76,6 +148,7 @@
 				2CF73720142CD30300B87A49 /* Sources */,
 				2CF73721142CD30300B87A49 /* Frameworks */,
 				2CF73722142CD30300B87A49 /* CopyFiles */,
+				2C69D2BD142E33580002DF08 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -113,7 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CF73729142CD30300B87A49 /* main.cpp in Sources */,
+				2CF73741142CD33900B87A49 /* MainCode.cpp in Sources */,
+				2CF73742142CD33900B87A49 /* PaperSheet.cpp in Sources */,
+				2CF73743142CD33900B87A49 /* Printer.cpp in Sources */,
+				2CF73744142CD33900B87A49 /* RGBpixmap.cpp in Sources */,
+				2CF73745142CD33900B87A49 /* Robot.cpp in Sources */,
+				2CF73746142CD33900B87A49 /* Room.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +276,7 @@
 				2CF73730142CD30300B87A49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
