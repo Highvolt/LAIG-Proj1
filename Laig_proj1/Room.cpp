@@ -1,11 +1,11 @@
 #include "Room.h"
-#include <stdio.h>
+#include <stdio.h> 
 
  #define PI 3.1415926535897932384626433
 
 double room_height=25.0;
 double ratio=1.74;
-double small_wall=46.0;
+double small_wall=40.0;
 double small_wall_part1=small_wall*0.6;
 double door_height=room_height/2;
 double door_width=small_wall*0.25;
@@ -21,6 +21,8 @@ void draw_room(double x,double y,double z){
 	draw_backwall(x,y,z);
 	draw_curve_wall(x+small_wall,y,z,10);
     draw_big_wall(x, y, z);
+	draw_ceiling(x, y, z);
+	draw_floor(x,y,z);
 }
 
 
@@ -87,12 +89,12 @@ void draw_backwall(double x, double y, double z){
 
 void draw_curve_wall(double x, double y, double z, int n_steps){
 	double z_step=big_wall_width/n_steps;
-	double wave_lenght=PI/big_wall_width;
+	double wave_lenght=(2*PI/big_wall_width);
 	double z_ant=z;
 	double x_ant=x;
     vector3d normal;
 	for(int i=0; i<=n_steps;i++){
-		double new_x=x+sin(i*z_step*wave_lenght)*10;
+		double new_x=2*x+sin(i*z_step*wave_lenght-(PI/2))*4;
 		double new_z=z+z_step*i;
         vector3d p1(new_x, y,  new_z);
         p1.normalize();
@@ -153,4 +155,24 @@ void draw_big_wall(double x, double y, double z){
 	glEnd();
     
     
+}
+
+void draw_ceiling(double x, double y, double z){
+	glBegin(GL_POLYGON);
+	glNormal3d(0.0, -1.0, 0.0);
+	glVertex3d(x, y+room_height, z);
+	glVertex3d(x,y+room_height, z+big_wall_width);
+	glVertex3d(x+small_wall, y+room_height, z+big_wall_width);
+	glVertex3d(x+small_wall, y+room_height, z);
+	glEnd();
+}
+
+void draw_floor(double x, double y, double z){
+	glBegin(GL_POLYGON);
+	glNormal3d(0.0, -1.0, 0.0);
+	glVertex3d(x, y+1, z);
+	glVertex3d(x,y+1, z+big_wall_width);
+	glVertex3d(x+small_wall, y+1, z+big_wall_width);
+	glVertex3d(x+small_wall, y+1, z);
+	glEnd();
 }

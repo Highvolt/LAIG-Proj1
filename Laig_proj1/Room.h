@@ -5,7 +5,7 @@
 #else
 #include <gl\glui.h>
 #endif
-#include <math.h>
+#include <math.h> 
 
 class vector3d {
 public:
@@ -35,4 +35,6 @@ void draw_room(double x,double y,double z);
 void draw_backwall(double x, double y, double z);
 void draw_curve_wall(double x, double y, double z, int n_steps);
 void draw_big_wall(double x, double y, double z);
+void draw_ceiling(double x, double y, double z);
+void draw_floor(double x, double y, double z);
 #endif
