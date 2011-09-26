@@ -5,7 +5,7 @@
 
 double room_height=25.0;
 double ratio=1.74;
-double small_wall=40.0;
+double small_wall=30.0;
 double small_wall_part1=small_wall*0.6;
 double door_height=room_height/2;
 double door_width=small_wall*0.25;
@@ -18,11 +18,11 @@ double big_wall_width_1=big_wall_width*0.25;
 double big_wall_width_2=big_wall_width*0.15;
 
 void draw_room(double x,double y,double z){
-	draw_backwall(x,y,z);
-	draw_curve_wall(x+small_wall,y,z,10);
-    draw_big_wall(x, y, z);
-	draw_ceiling(x, y, z);
-	draw_floor(x,y,z);
+	draw_backwall(x-small_wall/2,y,z-big_wall_width/2);
+	draw_curve_wall(x+small_wall/2,y,z-big_wall_width/2,10);
+    draw_big_wall(x-small_wall/2,y,z-big_wall_width/2);
+	draw_ceiling(x-small_wall/2,y,z-big_wall_width/2);
+	draw_floor(x-small_wall/2,y,z-big_wall_width/2);
 }
 
 
@@ -94,7 +94,7 @@ void draw_curve_wall(double x, double y, double z, int n_steps){
 	double x_ant=x;
     vector3d normal;
 	for(int i=0; i<=n_steps;i++){
-		double new_x=2*x+sin(i*z_step*wave_lenght-(PI/2))*4;
+		double new_x=x+(-sin(-PI/2)+sin(i*z_step*wave_lenght-(PI/2)))*4;
 		double new_z=z+z_step*i;
         vector3d p1(new_x, y,  new_z);
         p1.normalize();
@@ -170,9 +170,9 @@ void draw_ceiling(double x, double y, double z){
 void draw_floor(double x, double y, double z){
 	glBegin(GL_POLYGON);
 	glNormal3d(0.0, -1.0, 0.0);
-	glVertex3d(x, y+1, z);
-	glVertex3d(x,y+1, z+big_wall_width);
-	glVertex3d(x+small_wall, y+1, z+big_wall_width);
-	glVertex3d(x+small_wall, y+1, z);
+	glVertex3d(x, y, z);
+	glVertex3d(x,y, z+big_wall_width);
+	glVertex3d(x+small_wall, y, z+big_wall_width);
+	glVertex3d(x+small_wall, y, z);
 	glEnd();
 }

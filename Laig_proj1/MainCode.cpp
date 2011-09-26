@@ -232,7 +232,7 @@ void display(void)
 	glEnd();
 
 	
-	draw_room(-roomX+1,0.0,-roomZ+1);
+	draw_room(0.0,1.0,0.0);
 
 
 	// swapping the buffers causes the rendering above to be shown
