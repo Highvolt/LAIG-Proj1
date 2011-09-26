@@ -2,27 +2,53 @@
 
 double robot_width=4;
 double robot_length=4;
-double robot_height=4;
-double rims_size=4;
-double rims_width=2;
+double robot_height=2;
+double rims_size=1;
+double rims_width=0.2;
 void draw_robot(double x, double y, double z){
     draw_box(x,y , z);
     draw_wheels(x,y,z);
     
 }
 
-void draw_wheels(double x,double y,double z){
-    glPushMatrix();
-    glDisable( GL_CULL_FACE );
-    glRotated(90.0, 1.0, 0.0, 0.0);
-    glTranslated(x+robot_width/2-rims_size/2, y+rims_size, z+rims_width);
+void draw_wheel(){
     GLUquadric *w1;
     w1=gluNewQuadric();
+    glPushMatrix();
+    gluDisk(w1, 0.0, rims_size, 10, 1);
+    glPopMatrix();
+    glPushMatrix();
+    glTranslated(0.0,  0.0,rims_width);
+    gluDisk(w1, 0.0, rims_size, 10, 1);
+    glPopMatrix();
+    glPushMatrix();
     gluCylinder(w1, rims_size, rims_size, rims_width, 10, 1);
-   
+    glPopMatrix();
+}
+
+void draw_wheels(double x,double y,double z){
+   glDisable( GL_CULL_FACE );
+    /*  glRotated(90.0, 1.0, 0.0, 0.0);*/
+
+    glPushMatrix();
+    glTranslated(x+robot_width/2-rims_size/2, y+rims_size/2, z+robot_length/2);
+    draw_wheel();
+    glPopMatrix();
+    glPushMatrix();
+    glTranslated(x-robot_width/2+rims_size/2, y+rims_size/2, z+robot_length/2);
+    draw_wheel();
+    glPopMatrix();
+    glPushMatrix();
+    glTranslated(x+robot_width/2-rims_size/2, y+rims_size/2, z-robot_length/2-rims_width);
+    draw_wheel();
+    glPopMatrix();
+    glPushMatrix();
+    glTranslated(x-robot_width/2+rims_size/2, y+rims_size/2, z-robot_length/2-rims_width);
+    draw_wheel();
+    glPopMatrix();
     glEnable( GL_CULL_FACE );
     glCullFace(GL_BACK);
-    glPopMatrix();
+
 
 }
 
