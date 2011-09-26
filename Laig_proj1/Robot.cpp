@@ -4,14 +4,21 @@ double robot_width=4;
 double robot_length=4;
 double robot_height=4;
 double rims_size=4;
-
+double rims_width=2;
 void draw_robot(double x, double y, double z){
     draw_box(x,y , z);
-    
+    draw_wheels(x,y,z);
     
 }
 
-void draw_wheels(){
+void draw_wheels(double x,double y,double z){
+    glPushMatrix();
+    glRotated(90.0, 1.0, 0.0, 0.0);
+    glTranslated(x+robot_width/2-rims_size/2, y+rims_size, z+rims_width);
+    GLUquadric *w1;
+    w1=gluNewQuadric();
+    gluCylinder(w1, rims_size, rims_size, rims_width, 10, 1);
+    glPopMatrix();
 
 }
 
