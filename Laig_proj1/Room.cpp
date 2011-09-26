@@ -160,10 +160,10 @@ void draw_big_wall(double x, double y, double z){
 void draw_ceiling(double x, double y, double z){
 	glBegin(GL_POLYGON);
 	glNormal3d(0.0, -1.0, 0.0);
-	glVertex3d(x, y+room_height, z);
-	glVertex3d(x,y+room_height, z+big_wall_width);
-	glVertex3d(x+small_wall, y+room_height, z+big_wall_width);
 	glVertex3d(x+small_wall, y+room_height, z);
+    glVertex3d(x+small_wall, y+room_height, z+big_wall_width);
+    glVertex3d(x,y+room_height, z+big_wall_width);
+    glVertex3d(x, y+room_height, z);
 	glEnd();
 }
 

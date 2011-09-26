@@ -10,6 +10,7 @@
 #include <math.h>
 #include "RGBpixmap.h"
 #include "Room.h"
+#include "Robot.h"
 
 // quadricas
 GLUquadric* glQ;	// nec. p/ criar sup. quadraticas (cilindros, esferas...)
@@ -233,6 +234,7 @@ void display(void)
 
 	
 	draw_room(0.0,1.0,0.0);
+    draw_robot(0.0, 1.0, 0.0);
 
 
 	// swapping the buffers causes the rendering above to be shown

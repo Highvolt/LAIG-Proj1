@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2EA2E01430CDEF0082BB84 /* Misc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EA2DF1430CDEF0082BB84 /* Misc.cpp */; };
 		2C69D2BE142E33690002DF08 /* clamp.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C69D2BB142E31C60002DF08 /* clamp.bmp */; };
 		2C69D2BF142E33690002DF08 /* feup.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CF73732142CD33900B87A49 /* feup.bmp */; };
 		2C69D2C0142E33690002DF08 /* mandril.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CF73734142CD33900B87A49 /* mandril.bmp */; };
@@ -50,6 +51,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C2EA2DF1430CDEF0082BB84 /* Misc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Misc.cpp; sourceTree = "<group>"; };
+		2C2EA2E11430CE0D0082BB84 /* Misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Misc.h; sourceTree = "<group>"; };
 		2C69D2BB142E31C60002DF08 /* clamp.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = clamp.bmp; path = Laig_proj1/clamp.bmp; sourceTree = "<group>"; };
 		2CF73724142CD30300B87A49 /* Laig_proj1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Laig_proj1; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF7372A142CD30300B87A49 /* Laig_proj1.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Laig_proj1.1; sourceTree = "<group>"; };
@@ -134,6 +137,8 @@
 				2CF7373E142CD33900B87A49 /* Room.cpp */,
 				2CF7373F142CD33900B87A49 /* Room.h */,
 				2CF7372A142CD30300B87A49 /* Laig_proj1.1 */,
+				2C2EA2DF1430CDEF0082BB84 /* Misc.cpp */,
+				2C2EA2E11430CE0D0082BB84 /* Misc.h */,
 			);
 			path = Laig_proj1;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				2CF73744142CD33900B87A49 /* RGBpixmap.cpp in Sources */,
 				2CF73745142CD33900B87A49 /* Robot.cpp in Sources */,
 				2CF73746142CD33900B87A49 /* Room.cpp in Sources */,
+				2C2EA2E01430CDEF0082BB84 /* Misc.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
