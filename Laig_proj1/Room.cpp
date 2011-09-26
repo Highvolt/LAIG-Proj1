@@ -4,8 +4,8 @@
  #define PI 3.1415926535897932384626433
 
 double room_height=25.0;
-double ratio=1.74;
-double small_wall=30.0;
+double ratio=1.9;
+double small_wall=37.0;
 double small_wall_part1=small_wall*0.6;
 double door_height=room_height/2;
 double door_width=small_wall*0.25;
