@@ -5,15 +5,40 @@ double robot_length=4;
 double robot_height=2;
 double rims_size=1;
 double rims_width=0.2;
+
 void draw_robot(double x, double y, double z){
-    draw_box(x,y , z);
-    draw_wheels(x,y,z);
+    draw_box(x,y+rims_size/2 , z);
+    draw_wheels(x,y+rims_size/2,z);
+    draw_candle(x,y,z);
+    
+}
+
+void draw_candle(double x, double y, double z){
+
+    double plane[]={0,1,0,0};
+    glPushMatrix();
+    glTranslated(0, 10, 0);
+    glPushMatrix();
+    glTranslated(3.0, 0, 0);
+    glClipPlane(GL_CLIP_PLANE0, plane);
+    
+    glEnable(GL_CLIP_PLANE0);
+    glutSolidTorus(1.0,3.0,10,10);
+    glDisable(GL_CLIP_PLANE0);
+    GLUquadric* a=gluNewQuadric();
+    glPopMatrix();
+    glPushMatrix();
+    glRotated(90, 1, 0, 0);
+    gluCylinder(a, 1, 1, 10, 10, 10);
+    glPopMatrix();
+    glPopMatrix();
     
 }
 
 void draw_wheel(){
     GLUquadric *w1;
     w1=gluNewQuadric();
+    
     glPushMatrix();
     gluDisk(w1, 0.0, rims_size, 10, 1);
     glPopMatrix();
