@@ -5,11 +5,12 @@ double robot_length=4;
 double robot_height=2;
 double rims_size=1;
 double rims_width=0.2;
-
+double candle_height=9;
+double candle_radius=0.5;
 void draw_robot(double x, double y, double z){
     draw_box(x,y+rims_size/2 , z);
-    draw_wheels(x,y+rims_size/2,z);
-    draw_candle(x,y,z);
+    draw_wheels(x,y,z);
+	draw_candle(x+robot_width/2-candle_radius/2,y+robot_height+rims_size/2,z);
     
 }
 
@@ -17,19 +18,24 @@ void draw_candle(double x, double y, double z){
 
     double plane[]={0,1,0,0};
     glPushMatrix();
+	glEnable(GL_NORMALIZE);
+	glTranslated(x,y,z);
+	glScaled(0.5,0.5,0.5);
+	
     glTranslated(0, 10, 0);
     glPushMatrix();
-    glTranslated(3.0, 0, 0);
+    glTranslated(1.0, 0, 0);
     glClipPlane(GL_CLIP_PLANE0, plane);
     
     glEnable(GL_CLIP_PLANE0);
-    glutSolidTorus(1.0,3.0,10,10);
+    glutSolidTorus(0.5,1.0,10,10);
     glDisable(GL_CLIP_PLANE0);
     GLUquadric* a=gluNewQuadric();
     glPopMatrix();
     glPushMatrix();
     glRotated(90, 1, 0, 0);
-    gluCylinder(a, 1, 1, 10, 10, 10);
+    gluCylinder(a, 0.5, 0.5, 10, 10, 10);
+	glDisable(GL_NORMALIZE);
     glPopMatrix();
     glPopMatrix();
     
@@ -54,21 +60,21 @@ void draw_wheel(){
 void draw_wheels(double x,double y,double z){
    glDisable( GL_CULL_FACE );
     /*  glRotated(90.0, 1.0, 0.0, 0.0);*/
-
+   //double rims_size=0;
     glPushMatrix();
-    glTranslated(x+robot_width/2-rims_size/2, y+rims_size/2, z+robot_length/2);
+    glTranslated(x+robot_width/2-rims_size/2, y+rims_size, z+robot_length/2);
     draw_wheel();
     glPopMatrix();
     glPushMatrix();
-    glTranslated(x-robot_width/2+rims_size/2, y+rims_size/2, z+robot_length/2);
+    glTranslated(x-robot_width/2+rims_size/2, y+rims_size, z+robot_length/2);
     draw_wheel();
     glPopMatrix();
     glPushMatrix();
-    glTranslated(x+robot_width/2-rims_size/2, y+rims_size/2, z-robot_length/2-rims_width);
+    glTranslated(x+robot_width/2-rims_size/2, y+rims_size, z-robot_length/2-rims_width);
     draw_wheel();
     glPopMatrix();
     glPushMatrix();
-    glTranslated(x-robot_width/2+rims_size/2, y+rims_size/2, z-robot_length/2-rims_width);
+    glTranslated(x-robot_width/2+rims_size/2, y+rims_size, z-robot_length/2-rims_width);
     draw_wheel();
     glPopMatrix();
     glEnable( GL_CULL_FACE );

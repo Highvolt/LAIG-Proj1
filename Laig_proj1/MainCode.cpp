@@ -129,6 +129,7 @@ void display(void)
 	glRotated(90.0, 0.0,1.0,0.0 );
 	gluCylinder(glQ, axis_radius_begin, axis_radius_end,
 		             axis_lenght, axis_nslices, axis_nstacks);   // nao tem bases
+	
 	glPopMatrix();
 
 	// cilindro representativo do eixo Y
@@ -137,6 +138,7 @@ void display(void)
 	glRotated(-90.0, 1.0,0.0,0.0 );
 	gluCylinder(glQ, axis_radius_begin, axis_radius_end,
 		             axis_lenght, axis_nslices, axis_nstacks);   // nao tem bases
+	
 	glPopMatrix();
 	
 	// cilindro representativo do eixo Z
@@ -145,6 +147,7 @@ void display(void)
 	// nao necessita rotacao... glRotated(...);
 	gluCylinder(glQ, axis_radius_begin, axis_radius_end,
 		             axis_lenght, axis_nslices, axis_nstacks);   // nao tem bases
+	
 	glPopMatrix();
 
 	
@@ -175,7 +178,7 @@ void display(void)
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, 1);	// activa a textura 1 (feup)
 	temp = 2; // duas repetições na direccao Z
-
+	/*
 	glBegin(GL_POLYGON);
 		glNormal3d(0.0,0.0,1.0);  // esta normal fica comum aos 4 vertices
 		glTexCoord2f(0.0,0.0);  glVertex3d(-roomX, 0.0, roomZ);	// associacao de
@@ -192,9 +195,9 @@ void display(void)
 		glTexCoord2f(1.0,temp); glVertex3d(roomX, roomY,  -roomZ);	// das texturas, aos
 		glTexCoord2f(0.0,temp); glVertex3d(-roomX, roomY,  -roomZ);	// vertices 3D do poligono
 	glEnd();
-
+	*/
 	// desenha rectangulo paralelo ao plano ZY, sem texturas
-	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_2D);/*
 	glBegin(GL_POLYGON);
 		glNormal3d(1.0,0.0,0.0);  // esta normal fica comum aos 4 vertices
 		glVertex3d( -roomX, 0.0,  roomZ);
@@ -232,10 +235,10 @@ void display(void)
 		glTexCoord2f(1.0,temp); glVertex3d(-roomX, roomY,  roomZ);	// das texturas, aos
 		glTexCoord2f(0.0,temp); glVertex3d(-roomX, 0.0,  roomZ);	// vertices 3D do poligono
 	glEnd();
-
+	*/
 	
-	draw_room(0.0,1.0,0.0);
-    draw_robot(0.0, 1.0, 0.0);
+	draw_room(0.0,0.0,0.0);
+    draw_robot(0.0, 0.0, 0.0);
 	draw_machine(-5.0, 0.0, 0.0);
 
 
@@ -290,9 +293,27 @@ void reshape(int w, int h)
 void keyboard(unsigned char key, int x, int y)
 {
    switch (key) {
-      case 27:		// tecla de escape termina o programa
+    case 27:		// tecla de escape termina o programa
          exit(0);
          break;
+	case 'w':
+		  light0y++;
+		break;
+	case 's':
+		  light0y--;
+		  break;
+	case 'a':
+		  light0x--;
+		  break;
+	case 'd':
+		  light0x++;
+		  break;
+	case 'r':
+		  light0z--;
+		  break;	
+	case 'f':
+		  light0z++;
+		  break;
    }
 }
 
@@ -374,6 +395,12 @@ void inicializacao()
 
 	pixmap.readBMPFile("mandril.bmp");
 	pixmap.setTexture(4);
+
+	pixmap.readBMPFile("paisagem.bmp");
+	pixmap.setTexture(5);
+
+	pixmap.readBMPFile("wall_tex.bmp");
+	pixmap.setTexture(6);
 }
 
 void terminacao()

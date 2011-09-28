@@ -11,6 +11,8 @@
 		2C69D2BF142E33690002DF08 /* feup.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CF73732142CD33900B87A49 /* feup.bmp */; };
 		2C69D2C0142E33690002DF08 /* mandril.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CF73734142CD33900B87A49 /* mandril.bmp */; };
 		2C69D2C1142E33690002DF08 /* tile.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CF73740142CD33900B87A49 /* tile.bmp */; };
+		2CAD491D14335C6F00BA52AB /* wall_tex.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CAD491B14335C4E00BA52AB /* wall_tex.bmp */; };
+		2CAD491E14335C6F00BA52AB /* paisagem.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CAD491A14335C4E00BA52AB /* paisagem.bmp */; };
 		2CF7372B142CD30300B87A49 /* Laig_proj1.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CF7372A142CD30300B87A49 /* Laig_proj1.1 */; };
 		2CF73741142CD33900B87A49 /* MainCode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF73733142CD33900B87A49 /* MainCode.cpp */; };
 		2CF73742142CD33900B87A49 /* PaperSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF73735142CD33900B87A49 /* PaperSheet.cpp */; };
@@ -30,6 +32,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				2CAD491D14335C6F00BA52AB /* wall_tex.bmp in CopyFiles */,
+				2CAD491E14335C6F00BA52AB /* paisagem.bmp in CopyFiles */,
 				2C69D2BE142E33690002DF08 /* clamp.bmp in CopyFiles */,
 				2C69D2BF142E33690002DF08 /* feup.bmp in CopyFiles */,
 				2C69D2C0142E33690002DF08 /* mandril.bmp in CopyFiles */,
@@ -51,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		2C69D2BB142E31C60002DF08 /* clamp.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = clamp.bmp; path = Laig_proj1/clamp.bmp; sourceTree = "<group>"; };
+		2CAD491A14335C4E00BA52AB /* paisagem.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = paisagem.bmp; path = Laig_proj1/paisagem.bmp; sourceTree = "<group>"; };
+		2CAD491B14335C4E00BA52AB /* wall_tex.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = wall_tex.bmp; path = Laig_proj1/wall_tex.bmp; sourceTree = "<group>"; };
 		2CF73724142CD30300B87A49 /* Laig_proj1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Laig_proj1; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF7372A142CD30300B87A49 /* Laig_proj1.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Laig_proj1.1; sourceTree = "<group>"; };
 		2CF73732142CD33900B87A49 /* feup.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = feup.bmp; path = Laig_proj1/feup.bmp; sourceTree = "<group>"; };
@@ -90,6 +96,8 @@
 		2C69D2BC142E33250002DF08 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2CAD491B14335C4E00BA52AB /* wall_tex.bmp */,
+				2CAD491A14335C4E00BA52AB /* paisagem.bmp */,
 				2C69D2BB142E31C60002DF08 /* clamp.bmp */,
 				2CF73732142CD33900B87A49 /* feup.bmp */,
 				2CF73734142CD33900B87A49 /* mandril.bmp */,
