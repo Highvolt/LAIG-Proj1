@@ -2,7 +2,7 @@
 #ifdef __APPLE__
 #include <GLUI/GLUI.h>
 #else
-#include <glui.h>
+#include <gl/glui.h>
 #endif
 
 #include "RGBpixmap.h"
