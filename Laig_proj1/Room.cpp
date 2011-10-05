@@ -184,40 +184,49 @@ void draw_curve_wall(double x, double y, double z, int n_steps){
 
 
 void draw_big_wall(double x, double y, double z){
+    glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, 6);
+    double num=big_wall_width_2*number_of_tiles_per_unit;
+	double numh=room_height*number_of_tiles_per_unit;
    //primeira parte parede completa junto a parte do fundo
     glBegin(GL_POLYGON);
     glNormal3d(1.0,0.0,0.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x, y, z);	
-    glVertex3d(x,y+room_height , z);	
-    glVertex3d(x, y+room_height,  z+big_wall_width_2);	
-    glVertex3d(x, y,  z+big_wall_width_2);
+    glTexCoord2f(0.0,0.0);glVertex3d(x, y, z);	
+    glTexCoord2f(0.0,numh); glVertex3d(x,y+room_height , z);	
+    glTexCoord2f(num,numh); glVertex3d(x, y+room_height,  z+big_wall_width_2);	
+    glTexCoord2f(num,0.0); glVertex3d(x, y,  z+big_wall_width_2);
 	glEnd();
   //parte de baixo da janela  
+    num=big_window_width*number_of_tiles_per_unit;
+    numh=big_window_bottom_wall_height*number_of_tiles_per_unit;
     glBegin(GL_POLYGON);
     glNormal3d(1.0,0.0,0.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x, y, z+big_wall_width_2);	
-    glVertex3d(x,y+big_window_bottom_wall_height , z+big_wall_width_2);	
-    glVertex3d(x, y+big_window_bottom_wall_height,  z+big_wall_width_2+big_window_width);	
-    glVertex3d(x, y,  z+big_wall_width_2+big_window_width);
+    glTexCoord2f(0.0,0.0);glVertex3d(x, y, z+big_wall_width_2);	
+    glTexCoord2f(0.0,numh);glVertex3d(x,y+big_window_bottom_wall_height , z+big_wall_width_2);	
+    glTexCoord2f(num,numh);glVertex3d(x, y+big_window_bottom_wall_height,  z+big_wall_width_2+big_window_width);	
+    glTexCoord2f(num,0.0);glVertex3d(x, y,  z+big_wall_width_2+big_window_width);
 	glEnd();
   //parte de cima  
+     numh=(room_height-big_window_height)*number_of_tiles_per_unit;
     glBegin(GL_POLYGON);
     glNormal3d(1.0,0.0,0.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x, y+big_window_height, z+big_wall_width_2);	
-    glVertex3d(x,y+room_height , z+big_wall_width_2);	
-    glVertex3d(x, y+room_height,  z+big_wall_width_2+big_window_width);	
-    glVertex3d(x, y+big_window_height,  z+big_wall_width_2+big_window_width);
+    glTexCoord2f(0.0,0.0);glVertex3d(x, y+big_window_height, z+big_wall_width_2);	
+    glTexCoord2f(0.0,numh);glVertex3d(x,y+room_height , z+big_wall_width_2);	
+    glTexCoord2f(num,numh);glVertex3d(x, y+room_height,  z+big_wall_width_2+big_window_width);	
+    glTexCoord2f(num,0.0);glVertex3d(x, y+big_window_height,  z+big_wall_width_2+big_window_width);
 	glEnd();
     
  //parte depois da janela
+    num=(big_wall_width-(big_wall_width_2+big_window_width))*number_of_tiles_per_unit;
+    numh=room_height*number_of_tiles_per_unit;
     glBegin(GL_POLYGON);
     glNormal3d(1.0,0.0,0.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x, y, z+big_wall_width_2+big_window_width);	
-    glVertex3d(x,y+room_height , z+big_wall_width_2+big_window_width);	
-    glVertex3d(x, y+room_height,  z+big_wall_width);	
-    glVertex3d(x, y,  z+big_wall_width);
+    glTexCoord2f(0.0,0.0);glVertex3d(x, y, z+big_wall_width_2+big_window_width);	
+    glTexCoord2f(0.0,numh);glVertex3d(x,y+room_height , z+big_wall_width_2+big_window_width);	
+    glTexCoord2f(num,numh);glVertex3d(x, y+room_height,  z+big_wall_width);	
+    glTexCoord2f(num,0.0);glVertex3d(x, y,  z+big_wall_width);
 	glEnd();
-    
+    glDisable(GL_TEXTURE_2D);
     
 }
 
