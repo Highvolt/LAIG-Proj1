@@ -241,11 +241,45 @@ void draw_ceiling(double x, double y, double z){
 }
 
 void draw_floor(double x, double y, double z){
-	glBegin(GL_POLYGON);
+	/*glBegin(GL_POLYGON);
 	glNormal3d(0.0, -1.0, 0.0);
 	glVertex3d(x, y, z);
 	glVertex3d(x,y, z+big_wall_width);
 	glVertex3d(x+small_wall, y, z+big_wall_width);
 	glVertex3d(x+small_wall, y, z);
-	glEnd();
+	glEnd();*/
+    
+    GLdouble grid2x2[4][3] = {
+        {(x+small_wall), y, (z)}, {x, y, z},{(x+small_wall), y, (z+big_wall_width)}, {x, y, (z+big_wall_width)}
+    };
+    GLfloat nrmlcompon[4][3] = {	{  0.0, 1.0, 0.0},
+        {  0.0, 1.0, 0.0}, 
+        {  0.0, 1.0, 0.0},
+        {  0.0, 1.0, 0.0} };
+    GLfloat textpoints[4][2] = {	{ 1.0, 0.0},
+        { 0.0, 0.0}, 
+        { 1.0, 1.0},
+        { 0.0, 1.0} };
+    
+    
+    glEnable(GL_MAP2_VERTEX_3);
+    glEnable(GL_MAP2_NORMAL);
+    glEnable(GL_MAP2_TEXTURE_COORD_2);
+    glMap2d(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 2, 1.0, 0.0, 2*3, 2, &grid2x2[0][0]);
+    glMap2f(GL_MAP2_NORMAL,   0.0, 1.0, 3, 2,  0.0, 1.0, 6, 2,  &nrmlcompon[0][0]);
+    glMap2f(GL_MAP2_TEXTURE_COORD_2,  0.0, 1.0, 2, 2,  0.0, 1.0, 4, 2,  &textpoints[0][0]);
+    glMapGrid2d( 200, 0.0, 1.0,
+                80, 0.0, 1.0);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, 6);
+
+
+    glEvalMesh2(GL_FILL,
+                0, 200,  
+                0, 80);  
+    glDisable(GL_MAP2_VERTEX_3);
+    glDisable(GL_MAP2_NORMAL);
+    glDisable(GL_MAP2_TEXTURE_COORD_2);
+    	glDisable(GL_TEXTURE_2D);
+    
 }
