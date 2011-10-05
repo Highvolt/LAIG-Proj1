@@ -165,10 +165,13 @@ void draw_curve_wall(double x, double y, double z, int n_steps){
 
 		glBegin(GL_POLYGON);
 		glNormal3d(0.0,-1.0,0.0);
-		glVertex3d(x,y+room_height,z_ant);
+        glVertex3d(new_x, y+room_height, z_ant);
+        glVertex3d(new_x, y+room_height, new_z);
 		glVertex3d(x,y+room_height,new_z);
-		glVertex3d(new_x, y+room_height, new_z);
-		glVertex3d(new_x, y+room_height, z_ant);
+        glVertex3d(x,y+room_height,z_ant);
+		
+		
+		
 		glEnd();
 
 
