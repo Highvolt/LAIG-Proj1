@@ -68,6 +68,18 @@ double light0z = 10.0;
 double symb_light0_radius = 0.2;
 int symb_light0_slices = 8;
 int symb_light0_stacks =8;
+int camera = 1;
+
+//definicoes camara 2
+double eyex = 0.0;
+double eyey = 130.0;
+double eyez = 0.0;
+double targetx = 0.0;
+double targety = 0.0;
+double targetz = 0.0;
+double upx = 0.0;
+double upy = 0.0;
+double upz = -1.0;
 
 // fonte (global) de luz ambiente 
 float light_ambient[] = {0.6, 0.6, 0.6, 1.0}; /* Set the background ambient lighting. */
@@ -102,9 +114,8 @@ void display(void)
 	//inicializacoes da matriz de transformacoes geometricas
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
-	gluLookAt(0,0,5,0,0,0,1,0,0);
-	//glRotatef(-90,1,0,0);
-	
+	if(camera == 1){
+
 	// afasta a cena de 70 unidades mais a dist�ncia que...
 	// ...decorre da utilizacao do botao de afastamento (pseudo-zoom)
     glTranslatef( obj_pos[0], obj_pos[1], -obj_pos[2]-70 );
@@ -118,6 +129,10 @@ void display(void)
 
 	// roda a cena de acordo com o botao (esfera) de rotacao
 	glMultMatrixf( view_rotate );
+	}
+	if(camera == 2){
+		gluLookAt(eyex,eyey,eyez,targetx,targety,targetz,upx,upy,upz);
+	}
 
 	// permissao de atribuicao directa de cores
 	// para objectos que nao tem material atribuido, como
@@ -299,6 +314,16 @@ void keyboard(unsigned char key, int x, int y)
     case 27:		// tecla de escape termina o programa
          exit(0);
          break;
+
+    case '1':
+    	 camera = 1;
+    	 break;
+    case '2':
+    	 camera = 2;
+    	 break;
+    case '3':
+    	 camera = 3;
+    	 break;
 	case 'w':
 		  light0y++;
 		break;
