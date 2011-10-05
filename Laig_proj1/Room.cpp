@@ -17,6 +17,7 @@ double big_window_top_wall_height=room_height*0.18;
 double big_wall_width_1=big_wall_width*0.25;
 double big_wall_width_2=big_wall_width*0.15;
 double impostor_floor_diff = 10.0;
+int number_steps = 100;
 
 double impostor_height=50.0;
 double impostor_width=impostor_height*1.6;
@@ -26,7 +27,7 @@ void draw_room(double x,double y,double z){
 	draw_impostors(x-small_wall/2-small_wall/8,y-impostor_floor_diff,z-big_wall_width/2-big_wall_width/8);
 
 	draw_backwall(x-small_wall/2,y,z-big_wall_width/2);
-	draw_curve_wall(x+small_wall/2,y,z-big_wall_width/2,10);
+	draw_curve_wall(x+small_wall/2,y,z-big_wall_width/2,number_steps);
     draw_big_wall(x-small_wall/2,y,z-big_wall_width/2);
 	draw_ceiling(x-small_wall/2,y,z-big_wall_width/2);
 	draw_floor(x-small_wall/2,y,z-big_wall_width/2);
@@ -152,6 +153,25 @@ void draw_curve_wall(double x, double y, double z, int n_steps){
          glTexCoord2f(0.0,numh);   glVertex3d(x_ant,y+room_height , z_ant);	
           glTexCoord2f(0.0,0.0) ; glVertex3d(x_ant, y, z_ant);	
 		glEnd();
+
+		//parte do chão e tecto curva
+		glBegin(GL_POLYGON);
+		glNormal3d(0,1,0);
+		glVertex3d(x,y,z_ant);
+		glVertex3d(x,y,new_z);
+		glVertex3d(new_x, y, new_z);
+		glVertex3d(new_x, y, z_ant);
+		glEnd();
+
+		glBegin(GL_POLYGON);
+		glNormal3d(0.0,-1.0,0.0);
+		glVertex3d(x,y+room_height,z_ant);
+		glVertex3d(x,y+room_height,new_z);
+		glVertex3d(new_x, y+room_height, new_z);
+		glVertex3d(new_x, y+room_height, z_ant);
+		glEnd();
+
+
 		z_ant=new_z;
 		x_ant=new_x;
     }

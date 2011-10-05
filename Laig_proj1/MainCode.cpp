@@ -70,6 +70,10 @@ int symb_light0_slices = 8;
 int symb_light0_stacks =8;
 int camera = 1;
 
+double robot_initialx = -7.5; //-5(coordenada x do lado direito da linha de impressao) - carpet_width/2
+double robot_initialy = 0.0;
+double robot_initialz = 18.5;  //carpet_long-20 + robot_lenght/2 + 0.5
+
 //definicoes camara 2
 double eyex = 0.0;
 double eyey = 130.0;
@@ -80,6 +84,8 @@ double targetz = 0.0;
 double upx = 0.0;
 double upy = 0.0;
 double upz = -1.0;
+
+
 
 // fonte (global) de luz ambiente 
 float light_ambient[] = {0.6, 0.6, 0.6, 1.0}; /* Set the background ambient lighting. */
@@ -253,11 +259,12 @@ void display(void)
 		glTexCoord2f(0.0,temp); glVertex3d(-roomX, 0.0,  roomZ);	// vertices 3D do poligono
 	glEnd();
 	*/
-	
+	glPushMatrix();
 	glCallList(1);
 	glCallList(2);
 	glCallList(3);
 	draw_machine_animation(-5,0,0);
+	glPopMatrix();
 
 
 	// swapping the buffers causes the rendering above to be shown
@@ -439,7 +446,7 @@ void inicializacao()
 	glEndList();
 
 	glNewList(3, GL_COMPILE);
-	draw_robot(0.0, 0.0, 0.0);
+		draw_robot(robot_initialx, robot_initialy, robot_initialz);
 	glEndList();
 }
 

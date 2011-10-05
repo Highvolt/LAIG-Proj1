@@ -1,7 +1,7 @@
 #ifdef __APPLE__
 #include <GLUI/GLUI.h>
 #else
-#include <gl\glui.h>
+#include <glui.h>
 #endif
 #include <math.h> 
 

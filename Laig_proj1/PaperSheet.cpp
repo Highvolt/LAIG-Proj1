@@ -2,7 +2,7 @@
 
 double carpet_height = 3;
 double carpet_width = 5;
-double carpet_long = 30;
+double carpet_long = 36;
 double cylinder_diameter = 2.0;
 double machine_side_size = 8;
 double machine_extra_size = 3;
@@ -87,19 +87,21 @@ void myBox(double dx, double dy, double dz)
 
 
 void draw_machine(double x, double y, double z){
+	glPushMatrix();
 	draw_carpet(x,y,z);
 	draw_printer(x,y,z);
 	draw_teapot(x,y,z);
-	draw_printer_cylinder(x,y,z);
 	draw_guillotine_sides(x,y,z);
+	glPopMatrix();
 }
 
 void draw_machine_animation(double x, double y, double z){
+	draw_printer_cylinder(x,y,z);
 	draw_guillotine(x,y,z);
 }
 
 void draw_carpet(double x, double y, double z){
-	//parte da linha de impressao paralela à parede do fundo
+	glPushMatrix();
 	glTranslated(0.0, 0.0, -20.0);
 	glBegin(GL_POLYGON);
 	glNormal3d(0.0,0.0,1.0);
@@ -157,10 +159,12 @@ void draw_carpet(double x, double y, double z){
 		glVertex3d(x, y, z);
 		glVertex3d(x-carpet_width, y, z);
 	glEnd();
+	glPopMatrix();
 }
 
 void draw_printer(double x, double y, double z){
-	//glTranslated(0.0, 0.0, -20.0);
+	glPushMatrix();
+	glTranslated(0.0, 0.0, -20.0);
 	//parte de cima
 	glBegin(GL_POLYGON);
 		glNormal3d(0.0, 1.0, 0.0);
@@ -236,12 +240,14 @@ void draw_printer(double x, double y, double z){
 			glVertex3d(x, y+carpet_height+cylinder_diameter, z+cylinder_diameter);
 			glVertex3d(x, y+carpet_height+cylinder_diameter+machine_top_height, z+cylinder_diameter);
 	glEnd();
+	glPopMatrix();
 
 }
 
 void draw_printer_cylinder(double x, double y, double z){
 		//cilindro
 		glPushMatrix();
+		glTranslated(0.0, 0.0, -20.0);
 			glDisable( GL_CULL_FACE );
 			GLUquadric *w1;
 			    w1=gluNewQuadric();
@@ -267,6 +273,7 @@ void draw_printer_cylinder(double x, double y, double z){
 
 void draw_teapot(double x, double y, double z){
 	glPushMatrix();
+	glTranslated(0.0, 0.0, -20.0);
 	glTranslated(x-teapot_height,y+carpet_height+cylinder_diameter+machine_top_height+teapot_height/2,z-teapot_height/2);
 	glutSolidTeapot(teapot_height);
 	glPopMatrix();
@@ -277,17 +284,20 @@ void draw_guillotine_sides(double x, double y, double z){
 
 	glPushMatrix();
 		glTranslated(x-carpet_width+guill_side_size/2, y+carpet_height+1, z+guill_position);
+		glTranslated(0.0, 0.0, -20.0);
 		myBox(guill_side_size, 4, guill_side_size);
 	glPopMatrix();
 
 	glPushMatrix();
 		glTranslated(x-guill_side_size/2, y+carpet_height+1, z+guill_position);
+		glTranslated(0.0, 0.0, -20.0);
 		myBox(guill_side_size, 4, guill_side_size);
 	glPopMatrix();
 }
 
 void draw_guillotine(double x, double y, double z){
 	glPushMatrix();
+	glTranslated(0.0, 0.0, -20.0);
 	glDisable( GL_CULL_FACE );
 	glBegin(GL_POLYGON);
 	glNormal3d(0.0,0.0,1.0);

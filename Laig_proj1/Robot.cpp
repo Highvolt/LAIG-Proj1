@@ -7,6 +7,7 @@ double rims_size=1;
 double rims_width=0.2;
 double candle_height=9;
 double candle_radius=0.5;
+
 void draw_robot(double x, double y, double z){
     draw_box(x,y+rims_size/2 , z);
     draw_wheels(x,y,z);
