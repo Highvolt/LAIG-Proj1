@@ -4,7 +4,7 @@
 #ifdef __APPLE__
 #include <GLUI/GLUI.h>
 #else
-#include <gl\glui.h>
+#include <glui.h>
 #endif
 
 #include <math.h>
@@ -37,7 +37,7 @@ float view_rotate[16] = { 1,0,0,0,
 // vector de posicao utilizado pelo botao de afastamento
 float obj_pos[] = { 0.0, 0.0, 0.0 };
 
-// declarações para os tres eixos (cilindros)
+// declaraï¿½ï¿½es para os tres eixos (cilindros)
 double axis_radius_begin =  0.4;
 double axis_radius_end   =  0.0;
 double axis_lenght       = 32.0;
@@ -54,7 +54,7 @@ float roomX = 30;  /* metade... */
 float roomY = 35;
 float roomZ = 115;  /* metade... */
 
-// declarações para a fonte de luz LIGHT0;
+// declaraï¿½ï¿½es para a fonte de luz LIGHT0;
 float light0_position[]  = {0.0, 3.0, 4.0, 1.0}; // nao necessaria...
 float light0_ambient[] =   {0.0, 0.0, 0.0, 1.0}; // sem componente ambiente
 float light0_diffuse[] =   {6.0, 6.0, 6.0, 1.0};
@@ -102,8 +102,10 @@ void display(void)
 	//inicializacoes da matriz de transformacoes geometricas
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
+	gluLookAt(0,0,5,0,0,0,1,0,0);
+	//glRotatef(-90,1,0,0);
 	
-	// afasta a cena de 70 unidades mais a distância que...
+	// afasta a cena de 70 unidades mais a distï¿½ncia que...
 	// ...decorre da utilizacao do botao de afastamento (pseudo-zoom)
     glTranslatef( obj_pos[0], obj_pos[1], -obj_pos[2]-70 );
 		// tambem se poderia ter feito:
@@ -177,7 +179,7 @@ void display(void)
 	// desenha rectangulo paralelo ao plano XY, com texturas
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, 1);	// activa a textura 1 (feup)
-	temp = 2; // duas repetições na direccao Z
+	temp = 2; // duas repetiï¿½ï¿½es na direccao Z
 	/*
 	glBegin(GL_POLYGON);
 		glNormal3d(0.0,0.0,1.0);  // esta normal fica comum aos 4 vertices
@@ -237,9 +239,10 @@ void display(void)
 	glEnd();
 	*/
 	
-	draw_room(0.0,0.0,0.0);
-    draw_robot(0.0, 0.0, 0.0);
-	draw_machine(-5.0, 0.0, 0.0);
+	glCallList(1);
+	glCallList(2);
+	glCallList(3);
+	draw_machine_animation(-5,0,0);
 
 
 	// swapping the buffers causes the rendering above to be shown
@@ -334,7 +337,7 @@ void myGlutIdle( void )
 void inicializacao()
 {
 
-	// inicialização de apontador para quádricas
+	// inicializaï¿½ï¿½o de apontador para quï¿½dricas
 	glQ = gluNewQuadric();
 
 
@@ -401,6 +404,18 @@ void inicializacao()
 
 	pixmap.readBMPFile("wall_tex.bmp");
 	pixmap.setTexture(6);
+
+	glNewList(1, GL_COMPILE);
+		draw_room(0.0,0.0,0.0);
+	glEndList();
+
+	glNewList(2, GL_COMPILE);
+		draw_machine(-5.0, 0.0, 0.0);
+	glEndList();
+
+	glNewList(3, GL_COMPILE);
+	draw_robot(0.0, 0.0, 0.0);
+	glEndList();
 }
 
 void terminacao()

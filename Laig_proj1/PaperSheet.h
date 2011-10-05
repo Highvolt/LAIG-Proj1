@@ -14,5 +14,7 @@ void draw_printer(double x, double y, double z);
 void draw_teapot(double x, double y, double z);
 void draw_printer_cylinder(double x, double y, double z);
 void draw_guillotine(double x, double y, double z);
+void draw_machine_animation(double x, double y, double z);
+void draw_guillotine_sides(double x, double y, double z);
 
 #endif

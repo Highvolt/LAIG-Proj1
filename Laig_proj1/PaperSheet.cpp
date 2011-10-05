@@ -91,6 +91,10 @@ void draw_machine(double x, double y, double z){
 	draw_printer(x,y,z);
 	draw_teapot(x,y,z);
 	draw_printer_cylinder(x,y,z);
+	draw_guillotine_sides(x,y,z);
+}
+
+void draw_machine_animation(double x, double y, double z){
 	draw_guillotine(x,y,z);
 }
 
@@ -268,6 +272,20 @@ void draw_teapot(double x, double y, double z){
 	glPopMatrix();
 }
 
+void draw_guillotine_sides(double x, double y, double z){
+	//Partes de lado
+
+	glPushMatrix();
+		glTranslated(x-carpet_width+guill_side_size/2, y+carpet_height+1, z+guill_position);
+		myBox(guill_side_size, 4, guill_side_size);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslated(x-guill_side_size/2, y+carpet_height+1, z+guill_position);
+		myBox(guill_side_size, 4, guill_side_size);
+	glPopMatrix();
+}
+
 void draw_guillotine(double x, double y, double z){
 	glPushMatrix();
 	glDisable( GL_CULL_FACE );
@@ -280,17 +298,5 @@ void draw_guillotine(double x, double y, double z){
 	glEnd();
 	glEnable( GL_CULL_FACE );
 	glCullFace(GL_BACK);
-	glPopMatrix();
-
-	//Partes de lado
-
-	glPushMatrix();
-		glTranslated(x-carpet_width+guill_side_size/2, y+carpet_height+1, z+guill_position);
-		myBox(guill_side_size, 4, guill_side_size);
-	glPopMatrix();
-
-	glPushMatrix();
-		glTranslated(x-guill_side_size/2, y+carpet_height+1, z+guill_position);
-		myBox(guill_side_size, 4, guill_side_size);
 	glPopMatrix();
 }

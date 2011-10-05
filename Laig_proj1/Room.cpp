@@ -16,13 +16,14 @@ double big_window_bottom_wall_height=room_height*0.12;
 double big_window_top_wall_height=room_height*0.18;
 double big_wall_width_1=big_wall_width*0.25;
 double big_wall_width_2=big_wall_width*0.15;
+double impostor_floor_diff = 10.0;
 
 double impostor_height=50.0;
 double impostor_width=impostor_height*1.6;
 double number_of_tiles_per_unit=0.2;
 
 void draw_room(double x,double y,double z){
-	draw_impostors(x-small_wall/2-small_wall/8,y,z-big_wall_width/2-big_wall_width/8);
+	draw_impostors(x-small_wall/2-small_wall/8,y-impostor_floor_diff,z-big_wall_width/2-big_wall_width/8);
 
 	draw_backwall(x-small_wall/2,y,z-big_wall_width/2);
 	draw_curve_wall(x+small_wall/2,y,z-big_wall_width/2,10);
