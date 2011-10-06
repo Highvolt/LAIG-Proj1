@@ -87,12 +87,14 @@ void myBox(double dx, double dy, double dz)
 
 
 void draw_machine(double x, double y, double z){
-	glPushMatrix();
+	glEnable(GL_NORMALIZE);
+    glPushMatrix();
 	draw_carpet(x,y,z);
 	draw_printer(x,y,z);
 	draw_teapot(x,y,z);
 	draw_guillotine_sides(x,y,z);
 	glPopMatrix();
+    glDisable(GL_NORMALIZE);
 }
 
 void draw_machine_animation(double x, double y, double z){
@@ -103,34 +105,38 @@ void draw_machine_animation(double x, double y, double z){
 void draw_carpet(double x, double y, double z){
 	glPushMatrix();
 	glTranslated(0.0, 0.0, -20.0);
-	glBegin(GL_POLYGON);
+    glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, 7);
+    glBegin(GL_POLYGON);
 	glNormal3d(0.0,0.0,1.0);
-	glVertex3d(x-carpet_width, y+carpet_height, z+carpet_long);
-	glVertex3d(x-carpet_width, y ,z+carpet_long);
-	glVertex3d(x,y,z+ carpet_long);
-	glVertex3d(x,y+carpet_height,z+carpet_long);
+	glTexCoord2f(0.0,2.0); glVertex3d(x-carpet_width, y+carpet_height, z+carpet_long);
+	glTexCoord2f(0.0,0.0); glVertex3d(x-carpet_width, y ,z+carpet_long);
+	glTexCoord2f(2.0,0.0); glVertex3d(x,y,z+ carpet_long);
+	glTexCoord2f(2.0,2.0); glVertex3d(x,y+carpet_height,z+carpet_long);
 	glEnd();
-
+    glDisable(GL_TEXTURE_2D);
 	// parte da esquerda da linha de impressão
-
+    glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, 7);
 	glBegin(GL_POLYGON);
 	glNormal3d(-1.0,0.0,0.0);
-	glVertex3d(x-carpet_width, y+carpet_height, z);
-	glVertex3d(x-carpet_width, y, z);
-	glVertex3d(x-carpet_width, y, z+carpet_long);
-	glVertex3d(x-carpet_width, y+carpet_height, z+carpet_long);
+	glTexCoord2d(0.0, 2.0);glVertex3d(x-carpet_width, y+carpet_height, z);
+	glTexCoord2d(0.0, 0.0);glVertex3d(x-carpet_width, y, z);
+	glTexCoord2d(2.0, 0.0);glVertex3d(x-carpet_width, y, z+carpet_long);
+	glTexCoord2d(2.0, 2.0);glVertex3d(x-carpet_width, y+carpet_height, z+carpet_long);
 	glEnd();
-
+    glDisable(GL_TEXTURE_2D);
 	//parte da direita da linha de impressao
-
+    glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, 7);
 	glBegin(GL_POLYGON);
 	glNormal3d(1.0, 0.0,0.0);
-	glVertex3d(x, y+carpet_height, z+carpet_long);
-	glVertex3d(x, y, z+carpet_long);
-	glVertex3d(x, y, z);
-	glVertex3d(x, y+carpet_height, z);
+	glTexCoord2d(0.0, 2.0);glVertex3d(x, y+carpet_height, z+carpet_long);
+	glTexCoord2d(0.0,0.0);glVertex3d(x, y, z+carpet_long);
+	glTexCoord2d(2.0, 0.0);glVertex3d(x, y, z);
+	glTexCoord2d(2.0, 2.0);glVertex3d(x, y+carpet_height, z);
 	glEnd();
-
+    glDisable(GL_TEXTURE_2D);
 	//parte de tras
 	glBegin(GL_POLYGON);
 		glNormal3d(0.0,0.0,-1.0);
@@ -159,6 +165,7 @@ void draw_carpet(double x, double y, double z){
 		glVertex3d(x, y, z);
 		glVertex3d(x-carpet_width, y, z);
 	glEnd();
+    
 	glPopMatrix();
 }
 

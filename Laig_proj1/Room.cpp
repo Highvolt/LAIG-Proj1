@@ -38,10 +38,10 @@ void draw_impostors(double x,double y, double z){
 	glBindTexture(GL_TEXTURE_2D, 5);
 	glBegin(GL_POLYGON);
 	glNormal3d(0.0,0.0,1.0);  // esta normal fica comum aos 4 vertices
-	glTexCoord2f(1.0,0.0); glVertex3d(x+impostor_width, y,  z); 
-	glTexCoord2f(1.0,1.0);glVertex3d(x+impostor_width, y+impostor_height,  z);	    
-	glTexCoord2f(0.0,1.0);glVertex3d(x,y+impostor_height , z);	
-    glTexCoord2f(0.0,0.0);glVertex3d(x, y, z);	
+	glTexCoord2f(0.0,0.0); glVertex3d(x+impostor_width, y,  z); 
+	glTexCoord2f(0.0,1.0);glVertex3d(x+impostor_width, y+impostor_height,  z);	    
+	glTexCoord2f(1.0,1.0);glVertex3d(x,y+impostor_height , z);	
+    glTexCoord2f(1.0,0.0);glVertex3d(x, y, z);	
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 	//x-=small_wall/2;
