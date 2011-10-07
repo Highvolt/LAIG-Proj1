@@ -77,6 +77,8 @@ double robot_initialz = 19;  //carpet_long-20 + robot_lenght/2 + 0.5
 double robot_x=robot_initialx;
 double robot_y=robot_initialy;
 double robot_z=robot_initialz;
+int robot_state=1;
+double robot_speed=0.05;
 double robot_angle=0;
 //definicoes camara 2
 double eyex = 0.0;
@@ -103,6 +105,27 @@ GLUI  *glui2;
 RGBpixmap pixmap;
 
 
+
+void move_robot(){
+    double as=90/10*robot_speed;
+    if(robot_state==1){
+        robot_x+=robot_speed;
+        std::cout<<robot_x<<std::endl;
+        if(abs(abs(robot_x)-abs(robot_initialx))>=10 && abs(abs(robot_x)-abs(robot_initialx))<=20){
+            robot_z-=robot_speed;
+            robot_angle+=as;
+        }else if(abs(abs(robot_z)-abs(robot_initialz))<=30 && abs(abs(robot_x)-abs(robot_initialx))>20){
+            robot_z-=robot_speed;
+        }else if(abs(abs(robot_z)-abs(robot_initialz))>30 && abs(abs(robot_x)-abs(robot_initialx))>20){
+            robot_state=0;
+        }
+    }/*else if(robot_state==2){
+        robot_z-=robot_speed;
+        if(abs(abs(robot_z)-abs(robot_initialz))>=10){
+            robot_state=3;
+        }
+    }*/
+}
 
 
 void display(void)
@@ -274,7 +297,7 @@ void display(void)
     //
     glTranslated(robot_x, robot_y, robot_z);
     glRotated(robot_angle, 0, 1, 0);
-    glTranslated(-robot_x, -robot_y, -robot_z);
+    //glTranslated(-robot_x, -robot_y, -robot_z);
 
 	glCallList(3);
 	glPopMatrix();
@@ -382,6 +405,7 @@ void myGlutIdle( void )
         glutSetWindow(main_window);  
     
 	animate();
+    move_robot();
     glutPostRedisplay();
     
 }
@@ -477,8 +501,8 @@ void inicializacao()
 	glEndList();
     
 	glNewList(3, GL_COMPILE);
-    draw_robot(robot_initialx, robot_initialy, robot_initialz);
-	//draw_robot(0, 0, 0);
+    //draw_robot(robot_initialx, robot_initialy, robot_initialz);
+	draw_robot(0, 0, 0);
     glEndList();
 }
 
