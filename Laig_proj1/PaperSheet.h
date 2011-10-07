@@ -21,4 +21,6 @@ void draw_guillotine_sides(double x, double y, double z);
 void update_machine();
 void draw_page(double x, double y, double z);
 bool getdone();
+double getjornalsize();
+double getjornal_width();
 #endif

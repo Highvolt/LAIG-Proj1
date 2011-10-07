@@ -31,6 +31,13 @@ bool getdone(){
     return done;
 }
 
+double getjornal_width(){
+    return carpet_width;
+}
+
+double getjornalsize(){
+    return jornal_size;
+}
 void myBox(double dx, double dy, double dz)
 
 
@@ -342,13 +349,14 @@ void draw_page(double x, double y, double z){
             glTexCoord2d(0.0,0.0); glVertex3d(x-carpet_width, y+carpet_height+0.1-alt[i], z-carpet_long/2-jornal_size+dist[i]);
             glTexCoord2d(0.0,1.0); glVertex3d(x-carpet_width, y+carpet_height+0.1-alt[i], z-carpet_long/2+dist[i]);
             glTexCoord2d(1.0,1.0); glVertex3d(x, y+carpet_height+0.1-alt[i], z-carpet_long/2+dist[i]);
-            glTexCoord2d(1.0,0.0); glVertex3d(x, y+carpet_height+0.1-alt[i], z-carpet_long/2-jornal_size+dist[i]);}else{
-                if(!done){    
-                    glTexCoord2d(0.0,0.0); glVertex3d(x-carpet_width, y+carpet_height+0.1-alt[i], z-jornal_size);
-                    glTexCoord2d(0.0,1.0); glVertex3d(x-carpet_width, y+carpet_height+0.1-alt[i], z);
-                    glTexCoord2d(1.0,1.0); glVertex3d(x, y+carpet_height+0.1-alt[i], z);
-                    glTexCoord2d(1.0,0.0); glVertex3d(x, y+carpet_height+0.1-alt[i], z-jornal_size);
-                }
+            glTexCoord2d(1.0,0.0); glVertex3d(x, y+carpet_height+0.1-alt[i], z-carpet_long/2-jornal_size+dist[i]);}else
+            {
+                    
+                    glTexCoord2d(0.0,0.0); glVertex3d(carpet_width, alt[i], jornal_size);
+                    glTexCoord2d(0.0,1.0); glVertex3d(carpet_width, alt[i],0.0 );
+                    glTexCoord2d(1.0,1.0); glVertex3d(0.0, alt[i], 0.0);
+                    glTexCoord2d(1.0,0.0); glVertex3d(0.0, alt[i], jornal_size);
+                
             }
         glEnd();
 	}

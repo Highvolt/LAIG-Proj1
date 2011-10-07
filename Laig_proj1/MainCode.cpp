@@ -313,8 +313,10 @@ void display(void)
     glPushMatrix();
     //glTranslated(-robot_x/2, 0, -robot_z);
     if(getdone()){
+        glTranslated(robot_x-getjornal_width()/2, 0, robot_z-getjornalsize()/2);
         glRotated(robot_angle, 0, 1, 0);
         draw_page(-5+robot_x, 0, 0+robot_z);
+        
     }
 	
 	glPopMatrix();
