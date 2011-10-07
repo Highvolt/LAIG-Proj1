@@ -9,9 +9,19 @@ double candle_height=9;
 double candle_radius=0.5;
 
 void draw_robot(double x, double y, double z){
-    draw_box(x,y+rims_size/2 , z);
-    draw_wheels(x,y,z);
-	draw_candle(x+robot_width/2-candle_radius/2,y+robot_height+rims_size/2,z);
+    glPushMatrix();
+    glTranslated(x,y+rims_size/2 , z);
+    //draw_box(x,y+rims_size/2 , z);
+    draw_box(0,0,0);
+    glPopMatrix();
+    glPushMatrix();
+    glTranslated(x,y , z);
+    draw_wheels(0,0,0);
+    glPopMatrix();
+    glPushMatrix();
+    glTranslated(x+robot_width/2-candle_radius/2,y+robot_height+rims_size/2,z);
+	draw_candle(0,0,0);
+    glPopMatrix();
     
 }
 

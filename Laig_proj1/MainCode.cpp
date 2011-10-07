@@ -74,6 +74,10 @@ double robot_initialx = -7.5; //-5(coordenada x do lado direito da linha de impr
 double robot_initialy = 0.0;
 double robot_initialz = 19;  //carpet_long-20 + robot_lenght/2 + 0.5
 
+double robot_x=robot_initialx;
+double robot_y=robot_initialy;
+double robot_z=robot_initialz;
+double robot_angle=0;
 //definicoes camara 2
 double eyex = 0.0;
 double eyey = 130.0;
@@ -264,10 +268,16 @@ void display(void)
 	glCallList(1);
 	 glDisable(GL_CULL_FACE);
 	glCallList(2);
+    draw_machine_animation(-5,0,0);
 	glEnable(GL_CULL_FACE);
-	
+	glPushMatrix();
+    //
+    glTranslated(robot_x, robot_y, robot_z);
+    glRotated(robot_angle, 0, 1, 0);
+    glTranslated(-robot_x, -robot_y, -robot_z);
+
 	glCallList(3);
-	draw_machine_animation(-5,0,0);
+	glPopMatrix();
 	glPopMatrix();
 	
 	glDisable(GL_COLOR_MATERIAL);
@@ -468,7 +478,8 @@ void inicializacao()
     
 	glNewList(3, GL_COMPILE);
     draw_robot(robot_initialx, robot_initialy, robot_initialz);
-	glEndList();
+	//draw_robot(0, 0, 0);
+    glEndList();
 }
 
 void terminacao()
