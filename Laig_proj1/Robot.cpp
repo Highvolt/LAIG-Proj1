@@ -57,14 +57,14 @@ void draw_wheel(){
     w1=gluNewQuadric();
     
     glPushMatrix();
-    gluDisk(w1, 0.0, rims_size, 10, 1);
+    gluDisk(w1, 0.0, rims_size, 30, 1);
     glPopMatrix();
     glPushMatrix();
     glTranslated(0.0,  0.0,rims_width);
-    gluDisk(w1, 0.0, rims_size, 10, 1);
+    gluDisk(w1, 0.0, rims_size, 30, 1);
     glPopMatrix();
     glPushMatrix();
-    gluCylinder(w1, rims_size, rims_size, rims_width, 10, 1);
+    gluCylinder(w1, rims_size, rims_size, rims_width, 30, 1);
     glPopMatrix();
 }
 
