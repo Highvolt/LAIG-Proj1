@@ -19,7 +19,7 @@ double guill_ani=-guill_bottom_height;
 double angle=0;
 double empurrao=1;
 double jornal_size=cylinder_diameter*3.1415;
-double velocidade_ang=3;
+double velocidade_ang=9;
 double velocidade_jornal=(velocidade_ang*0.0174532925)*(cylinder_diameter/2);
 double guill_speed=4*guill_bottom_height/(jornal_size/velocidade_jornal);
 std::vector<double> alt;
@@ -138,7 +138,7 @@ void update_machine(){
             if(dist[i]<carpet_long+jornal_size/2+empurrao)
                 dist[i]+=velocidade_jornal;
             else{
-                if(alt[i]<=carpet_height/2-(i/3)){
+                if(alt[i]<=carpet_height/2-(i/10)){
                     alt[i]+=0.1;
                 }else if(i==4){
                     done=true;
@@ -346,16 +346,16 @@ void draw_page(double x, double y, double z){
         glBegin(GL_POLYGON);
         glNormal3d(0.0,1.0,0.0);
         if(!done){    
-            glTexCoord2d(0.0,0.0); glVertex3d(x-carpet_width, y+carpet_height+0.1-alt[i], z-carpet_long/2-jornal_size+dist[i]);
-            glTexCoord2d(0.0,1.0); glVertex3d(x-carpet_width, y+carpet_height+0.1-alt[i], z-carpet_long/2+dist[i]);
-            glTexCoord2d(1.0,1.0); glVertex3d(x, y+carpet_height+0.1-alt[i], z-carpet_long/2+dist[i]);
-            glTexCoord2d(1.0,0.0); glVertex3d(x, y+carpet_height+0.1-alt[i], z-carpet_long/2-jornal_size+dist[i]);}else
+            glTexCoord2d(0.0,1.0); glVertex3d(x-carpet_width, y+carpet_height+0.1-alt[i], z-carpet_long/2-jornal_size+dist[i]);
+            glTexCoord2d(0.0,0.0); glVertex3d(x-carpet_width, y+carpet_height+0.1-alt[i], z-carpet_long/2+dist[i]);
+            glTexCoord2d(1.0,0.0); glVertex3d(x, y+carpet_height+0.1-alt[i], z-carpet_long/2+dist[i]);
+            glTexCoord2d(1.0,1.0); glVertex3d(x, y+carpet_height+0.1-alt[i], z-carpet_long/2-jornal_size+dist[i]);}else
             {
                     
-                    glTexCoord2d(0.0,0.0); glVertex3d(carpet_width, alt[i], jornal_size);
-                    glTexCoord2d(0.0,1.0); glVertex3d(carpet_width, alt[i],0.0 );
-                    glTexCoord2d(1.0,1.0); glVertex3d(0.0, alt[i], 0.0);
-                    glTexCoord2d(1.0,0.0); glVertex3d(0.0, alt[i], jornal_size);
+                    glTexCoord2d(1.0,0.0); glVertex3d(carpet_width, alt[i], jornal_size);
+                    glTexCoord2d(1.0,1.0); glVertex3d(carpet_width, alt[i],0.0 );
+                    glTexCoord2d(0.0,1.0); glVertex3d(0.0, alt[i], 0.0);
+                    glTexCoord2d(0.0,0.0); glVertex3d(0.0, alt[i], jornal_size);
                 
             }
         glEnd();
