@@ -7,6 +7,8 @@
 #endif
 #include <math.h>
 
+
+
 void myBox(double dx, double dy, double dz);
 void draw_machine(double x, double y, double z);
 void draw_carpet(double x, double y, double z);
@@ -18,4 +20,5 @@ void draw_machine_animation(double x, double y, double z);
 void draw_guillotine_sides(double x, double y, double z);
 void update_machine();
 void draw_page(double x, double y, double z);
+bool getdone();
 #endif

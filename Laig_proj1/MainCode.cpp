@@ -125,14 +125,14 @@ void move_robot(){
         }else if(abs(robot_z-robot_initialz)>30 && abs(robot_x-robot_initialx)>20){
             robot_state=0;
         }else{
-        robot_x+=robot_speed;
+            robot_x+=robot_speed;
         }
     }/*else if(robot_state==2){
-        robot_z-=robot_speed;
-        if(abs(abs(robot_z)-abs(robot_initialz))>=10){
-            robot_state=3;
-        }
-    }*/
+      robot_z-=robot_speed;
+      if(abs(abs(robot_z)-abs(robot_initialz))>=10){
+      robot_state=3;
+      }
+      }*/
 }
 
 
@@ -300,7 +300,7 @@ void display(void)
     glColor3f(1.0,1.0,1.0);
 	glPushMatrix();
 	glCallList(1);
-	 glDisable(GL_CULL_FACE);
+    glDisable(GL_CULL_FACE);
 	glCallList(2);
     draw_machine_animation(-5,0,0);
 	glEnable(GL_CULL_FACE);
@@ -308,9 +308,15 @@ void display(void)
     //
     glTranslated(robot_x, robot_y, robot_z);
     glRotated(robot_angle, 0, 1, 0);
-    //glTranslated(-robot_x, -robot_y, -robot_z);
-
-	glCallList(3);
+    glCallList(3);
+    glPopMatrix();
+    glPushMatrix();
+    //glTranslated(-robot_x/2, 0, -robot_z);
+    if(getdone()){
+        glRotated(robot_angle, 0, 1, 0);
+        draw_page(-5+robot_x, 0, 0+robot_z);
+    }
+	
 	glPopMatrix();
 	glPopMatrix();
 	
@@ -416,7 +422,8 @@ void myGlutIdle( void )
         glutSetWindow(main_window);  
     
 	animate();
-    move_robot();
+    if(getdone())
+        move_robot();
     glutPostRedisplay();
     
 }
@@ -491,16 +498,16 @@ void inicializacao()
     
 	pixmap.readBMPFile("wall_tex.bmp");
 	pixmap.setTexture(6);
-
+    
     pixmap.readBMPFile("wood3.bmp");
     pixmap.setTexture(7);
-
+    
 	pixmap.readBMPFile("steel_mesh.bmp");
 	pixmap.setTexture(8);
-
+    
 	pixmap.readBMPFile("steve.bmp");
 	pixmap.setTexture(9);
-		pixmap.readBMPFile("steve_2.bmp");
+    pixmap.readBMPFile("steve_2.bmp");
 	pixmap.setTexture(10);
     
     pixmap.readBMPFile("robot.bmp");
@@ -509,7 +516,7 @@ void inicializacao()
 	glNewList(1, GL_COMPILE);
     draw_room(0.0,0.0,0.0);
 	glEndList();
-   
+    
 	glNewList(2, GL_COMPILE);
     draw_machine(-5.0, 0.0, 0.0);
 	glEndList();
