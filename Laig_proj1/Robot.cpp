@@ -73,19 +73,19 @@ void draw_wheels(double x,double y,double z){
     /*  glRotated(90.0, 1.0, 0.0, 0.0);*/
    //double rims_size=0;
     glPushMatrix();
-    glTranslated(x+robot_width/2-rims_size/2, y+rims_size, z+robot_length/2);
+    glTranslated(x+robot_width/2-rims_size/2, y+rims_size, z+robot_length/2+0.01);
     draw_wheel();
     glPopMatrix();
     glPushMatrix();
-    glTranslated(x-robot_width/2+rims_size/2, y+rims_size, z+robot_length/2);
+    glTranslated(x-robot_width/2+rims_size/2, y+rims_size, z+robot_length/2+0.01);
     draw_wheel();
     glPopMatrix();
     glPushMatrix();
-    glTranslated(x+robot_width/2-rims_size/2, y+rims_size, z-robot_length/2-rims_width);
+    glTranslated(x+robot_width/2-rims_size/2, y+rims_size, z-robot_length/2-rims_width-0.01);
     draw_wheel();
     glPopMatrix();
     glPushMatrix();
-    glTranslated(x-robot_width/2+rims_size/2, y+rims_size, z-robot_length/2-rims_width);
+    glTranslated(x-robot_width/2+rims_size/2, y+rims_size, z-robot_length/2-rims_width-0.01);
     draw_wheel();
     glPopMatrix();
     glEnable( GL_CULL_FACE );
@@ -95,22 +95,23 @@ void draw_wheels(double x,double y,double z){
 }
 
 void draw_box(double x, double y, double z){
- 
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, 11);
     //Parede 1 begin
     glBegin(GL_POLYGON);
     glNormal3d(0.0,0.0,1.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x-robot_width/2, y+robot_height,  z-robot_length/2); 
-    glVertex3d(x-robot_width/2, y,  z-robot_length/2);   
-    glVertex3d(x+robot_width/2, y,  z-robot_length/2);	
-    glVertex3d(x+robot_width/2, y+robot_height,  z-robot_length/2);	
+    glTexCoord2d(0.0, 2.0); glVertex3d(x-robot_width/2, y+robot_height,  z-robot_length/2); 
+    glTexCoord2d(0.0, 0.0); glVertex3d(x-robot_width/2, y,  z-robot_length/2);   
+    glTexCoord2d(4.0, 0.0); glVertex3d(x+robot_width/2, y,  z-robot_length/2);	
+    glTexCoord2d(4.0, 2.0); glVertex3d(x+robot_width/2, y+robot_height,  z-robot_length/2);	
     glEnd();
     
     glBegin(GL_POLYGON);
     glNormal3d(0.0,0.0,-1.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x+robot_width/2, y+robot_height,  z-robot_length/2);
-    glVertex3d(x+robot_width/2, y,  z-robot_length/2);	
-    glVertex3d(x-robot_width/2, y,  z-robot_length/2);   
-    glVertex3d(x-robot_width/2, y+robot_height,  z-robot_length/2); 
+    glTexCoord2d(4.0, 2.0);glVertex3d(x+robot_width/2, y+robot_height,  z-robot_length/2);
+    glTexCoord2d(4.0, 0.0);glVertex3d(x+robot_width/2, y,  z-robot_length/2);	
+    glTexCoord2d(0.0, 0.0);glVertex3d(x-robot_width/2, y,  z-robot_length/2);   
+    glTexCoord2d(0.0, 2.0);glVertex3d(x-robot_width/2, y+robot_height,  z-robot_length/2); 
     glEnd();
     
     //parede 1 end
@@ -119,18 +120,18 @@ void draw_box(double x, double y, double z){
     glBegin(GL_POLYGON);
     glNormal3d(-1.0,0.0,0.0);  // esta normal fica comum aos 4 vertices
    
-    glVertex3d(x-robot_width/2, y+robot_height,  z-robot_length/2); 
-    glVertex3d(x-robot_width/2, y,  z-robot_length/2);   
-    glVertex3d(x-robot_width/2, y,  z+robot_length/2);	
-    glVertex3d(x-robot_width/2, y+robot_height,  z+robot_length/2);	
+    glTexCoord2d(0.0, 2.0);glVertex3d(x-robot_width/2, y+robot_height,  z-robot_length/2); 
+    glTexCoord2d(0.0, 0.0);glVertex3d(x-robot_width/2, y,  z-robot_length/2);   
+    glTexCoord2d(4.0, 0.0);glVertex3d(x-robot_width/2, y,  z+robot_length/2);	
+    glTexCoord2d(4.0, 2.0);glVertex3d(x-robot_width/2, y+robot_height,  z+robot_length/2);	
     glEnd();
     
       glBegin(GL_POLYGON);
     glNormal3d(1.0,0.0,0.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x-robot_width/2, y+robot_height,  z+robot_length/2);	
-    glVertex3d(x-robot_width/2, y,  z+robot_length/2);	
-    glVertex3d(x-robot_width/2, y,  z-robot_length/2); 
-    glVertex3d(x-robot_width/2, y+robot_height,  z-robot_length/2); 
+    glTexCoord2d(4.0, 2.0);glVertex3d(x-robot_width/2, y+robot_height,  z+robot_length/2);	
+    glTexCoord2d(4.0, 0.0);glVertex3d(x-robot_width/2, y,  z+robot_length/2);	
+    glTexCoord2d(0.0, 0.0);glVertex3d(x-robot_width/2, y,  z-robot_length/2); 
+    glTexCoord2d(0.0, 2.0);glVertex3d(x-robot_width/2, y+robot_height,  z-robot_length/2); 
     glEnd();
     
     //parede 2 end
@@ -138,18 +139,18 @@ void draw_box(double x, double y, double z){
     //Parede 3 begin
     glBegin(GL_POLYGON);
     glNormal3d(0.0,0.0,1.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x-robot_width/2, y+robot_height,  z+robot_length/2); 
-    glVertex3d(x-robot_width/2, y,  z+robot_length/2);   
-    glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
-    glVertex3d(x+robot_width/2, y+robot_height,  z+robot_length/2);	
+    glTexCoord2d(0.0, 2.0);glVertex3d(x-robot_width/2, y+robot_height,  z+robot_length/2); 
+    glTexCoord2d(0.0, 0.0);glVertex3d(x-robot_width/2, y,  z+robot_length/2);   
+    glTexCoord2d(4.0, 0.0);glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
+    glTexCoord2d(4.0, 2.0);glVertex3d(x+robot_width/2, y+robot_height,  z+robot_length/2);	
     glEnd();
     
     glBegin(GL_POLYGON);
     glNormal3d(0.0,0.0,-1.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x+robot_width/2, y+robot_height,  z+robot_length/2);
-    glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
-    glVertex3d(x-robot_width/2, y,  z+robot_length/2);   
-    glVertex3d(x-robot_width/2, y+robot_height,  z+robot_length/2); 
+    glTexCoord2d(4.0, 2.0);glVertex3d(x+robot_width/2, y+robot_height,  z+robot_length/2);
+   glTexCoord2d(4.0,0.0);glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
+    glTexCoord2d(0.0, 0.0);glVertex3d(x-robot_width/2, y,  z+robot_length/2);   
+    glTexCoord2d(0.0, 2.0);glVertex3d(x-robot_width/2, y+robot_height,  z+robot_length/2); 
     glEnd();
     
     //parede 3 end
@@ -159,18 +160,18 @@ void draw_box(double x, double y, double z){
     //Parede 4 begin
     glBegin(GL_POLYGON);
     glNormal3d(-1.0,0.0,0.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x+robot_width/2, y+robot_height,  z-robot_length/2); 
-    glVertex3d(x+robot_width/2, y,  z-robot_length/2);   
-    glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
-    glVertex3d(x+robot_width/2, y+robot_height,  z+robot_length/2);	
+    glTexCoord2d(0.0, 2.0);glVertex3d(x+robot_width/2, y+robot_height,  z-robot_length/2); 
+    glTexCoord2d(0.0, 0.0);glVertex3d(x+robot_width/2, y,  z-robot_length/2);   
+    glTexCoord2d(4.0, 0.0);glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
+    glTexCoord2d(4.0, 2.0);glVertex3d(x+robot_width/2, y+robot_height,  z+robot_length/2);	
     glEnd();
     
     glBegin(GL_POLYGON);
     glNormal3d(1.0,0.0,0.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x+robot_width/2, y+robot_height,  z+robot_length/2);	
-    glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
-    glVertex3d(x+robot_width/2, y,  z-robot_length/2); 
-    glVertex3d(x+robot_width/2, y+robot_height,  z-robot_length/2); 
+    glTexCoord2d(4.0, 2.0);glVertex3d(x+robot_width/2, y+robot_height,  z+robot_length/2);	
+    glTexCoord2d(4.0, 0.0);glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
+    glTexCoord2d(0.0, 0.0);glVertex3d(x+robot_width/2, y,  z-robot_length/2); 
+    glTexCoord2d(0.0, 2.0);glVertex3d(x+robot_width/2, y+robot_height,  z-robot_length/2); 
     glEnd();
     
     //parede 4 end
@@ -180,23 +181,23 @@ void draw_box(double x, double y, double z){
     //fundo
     glBegin(GL_POLYGON);
     glNormal3d(0.0,1.0,0.0);  // esta normal fica comum aos 4 vertices
-    glVertex3d(x-robot_width/2, y,  z-robot_length/2); 
-    glVertex3d(x-robot_width/2, y,  z+robot_length/2);   
-    glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
-    glVertex3d(x+robot_width/2, y,  z-robot_length/2);	
+    glTexCoord2d(0.0, 0.0);glVertex3d(x-robot_width/2, y,  z-robot_length/2); 
+    glTexCoord2d(0.0, 2.0);glVertex3d(x-robot_width/2, y,  z+robot_length/2);   
+    glTexCoord2d(4.0, 2.0);glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
+    glTexCoord2d(4.0, 0.0);glVertex3d(x+robot_width/2, y,  z-robot_length/2);	
     glEnd();
     
     glBegin(GL_POLYGON);
     glNormal3d(0.0,-1.0,0.0);  // esta normal fica comum aos 4 vertices
    
-    glVertex3d(x+robot_width/2, y,  z-robot_length/2);
-    glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
-    glVertex3d(x-robot_width/2, y,  z+robot_length/2); 
-    glVertex3d(x-robot_width/2, y,  z-robot_length/2); 
+    glTexCoord2d(4.0, 0.0);glVertex3d(x+robot_width/2, y,  z-robot_length/2);
+   glTexCoord2d(4.0, 2.0); glVertex3d(x+robot_width/2, y,  z+robot_length/2);	
+   glTexCoord2d(0.0, 2.0); glVertex3d(x-robot_width/2, y,  z+robot_length/2); 
+    glTexCoord2d(0.0, 0.0);glVertex3d(x-robot_width/2, y,  z-robot_length/2); 
   
     
    
     glEnd();
-    
+    glDisable(GL_TEXTURE_2D);
     //fundo    
 }

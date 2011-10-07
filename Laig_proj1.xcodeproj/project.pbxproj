@@ -17,6 +17,7 @@
 		2CA878F6143EB2730085D5E4 /* steve.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CA878F2143EB2660085D5E4 /* steve.bmp */; };
 		2CAD491D14335C6F00BA52AB /* wall_tex.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CAD491B14335C4E00BA52AB /* wall_tex.bmp */; };
 		2CAD491E14335C6F00BA52AB /* paisagem.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CAD491A14335C4E00BA52AB /* paisagem.bmp */; };
+		2CB4C386143F378E0079D4E4 /* robot.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CB4C384143F37860079D4E4 /* robot.bmp */; };
 		2CF7372B142CD30300B87A49 /* Laig_proj1.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CF7372A142CD30300B87A49 /* Laig_proj1.1 */; };
 		2CF73741142CD33900B87A49 /* MainCode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF73733142CD33900B87A49 /* MainCode.cpp */; };
 		2CF73742142CD33900B87A49 /* PaperSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2CF73735142CD33900B87A49 /* PaperSheet.cpp */; };
@@ -36,6 +37,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				2CB4C386143F378E0079D4E4 /* robot.bmp in CopyFiles */,
 				2CA878F4143EB2730085D5E4 /* steel_mesh.bmp in CopyFiles */,
 				2CA878F5143EB2730085D5E4 /* steve_2.bmp in CopyFiles */,
 				2CA878F6143EB2730085D5E4 /* steve.bmp in CopyFiles */,
@@ -71,6 +73,7 @@
 		2CA878F2143EB2660085D5E4 /* steve.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = steve.bmp; path = Laig_proj1/steve.bmp; sourceTree = "<group>"; };
 		2CAD491A14335C4E00BA52AB /* paisagem.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = paisagem.bmp; path = Laig_proj1/paisagem.bmp; sourceTree = "<group>"; };
 		2CAD491B14335C4E00BA52AB /* wall_tex.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = wall_tex.bmp; path = Laig_proj1/wall_tex.bmp; sourceTree = "<group>"; };
+		2CB4C384143F37860079D4E4 /* robot.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = robot.bmp; sourceTree = "<group>"; };
 		2CF73724142CD30300B87A49 /* Laig_proj1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Laig_proj1; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF7372A142CD30300B87A49 /* Laig_proj1.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Laig_proj1.1; sourceTree = "<group>"; };
 		2CF73732142CD33900B87A49 /* feup.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = feup.bmp; path = Laig_proj1/feup.bmp; sourceTree = "<group>"; };
@@ -110,6 +113,7 @@
 		2C69D2BC142E33250002DF08 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2CB4C384143F37860079D4E4 /* robot.bmp */,
 				2CA878F0143EB2660085D5E4 /* steel_mesh.bmp */,
 				2CA878F1143EB2660085D5E4 /* steve_2.bmp */,
 				2CA878F2143EB2660085D5E4 /* steve.bmp */,

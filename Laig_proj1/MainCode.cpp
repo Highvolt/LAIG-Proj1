@@ -109,15 +109,18 @@ RGBpixmap pixmap;
 void move_robot(){
     double as=90/10*robot_speed;
     if(robot_state==1){
-        robot_x+=robot_speed;
-        std::cout<<robot_x<<std::endl;
-        if(abs(abs(robot_x)-abs(robot_initialx))>=10 && abs(abs(robot_x)-abs(robot_initialx))<=20){
-            robot_z-=robot_speed;
+        
+        std::cout<<abs(robot_x-robot_initialx)<<std::endl;
+        if(abs(robot_x-robot_initialx)>15 && abs(robot_x-robot_initialx)<=20){
+            robot_x+=robot_speed/2;
+            robot_z-=robot_speed/2;
             robot_angle+=as;
-        }else if(abs(abs(robot_z)-abs(robot_initialz))<=30 && abs(abs(robot_x)-abs(robot_initialx))>20){
+        }else if(abs(robot_z-robot_initialz)<=30 && abs(robot_x-robot_initialx)>20){
             robot_z-=robot_speed;
-        }else if(abs(abs(robot_z)-abs(robot_initialz))>30 && abs(abs(robot_x)-abs(robot_initialx))>20){
+        }else if(abs(robot_z-robot_initialz)>30 && abs(robot_x-robot_initialx)>20){
             robot_state=0;
+        }else{
+        robot_x+=robot_speed;
         }
     }/*else if(robot_state==2){
         robot_z-=robot_speed;
@@ -491,6 +494,9 @@ void inicializacao()
 	pixmap.setTexture(9);
 		pixmap.readBMPFile("steve_2.bmp");
 	pixmap.setTexture(10);
+    
+    pixmap.readBMPFile("robot.bmp");
+    pixmap.setTexture(11);
     
 	glNewList(1, GL_COMPILE);
     draw_room(0.0,0.0,0.0);
