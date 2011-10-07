@@ -79,7 +79,7 @@ double robot_y=robot_initialy;
 double robot_z=robot_initialz;
 int rsignal=1;
 int robot_state=1;
-double robot_speed=0.05;
+double robot_speed=0.1;
 double robot_angle=0;
 //definicoes camara 2
 double eyex = 0.0;
@@ -116,26 +116,37 @@ void move_robot(){
     double as=90/10*robot_speed;
     if(robot_state==1){
         
-        std::cout<<abs(robot_x-robot_initialx)<<std::endl;
+        std::cout<<"X: "<<robot_x-robot_initialx<<"z: "<< robot_z-robot_initialz<<std::endl;
         if(abs(robot_x-robot_initialx)>15 && abs(robot_x-robot_initialx)<=20){
             robot_x+=robot_speed/2*rsignal;
-            robot_z-=robot_speed/2*rsignal;
+            robot_z-=(robot_speed/2*rsignal);
             robot_angle+=as*rsignal;
-        }else if(abs(robot_z-robot_initialz)<=30 && abs(robot_x-robot_initialx)>20 && abs(robot_z-robot_initialz)>=0){
-            robot_z-=robot_speed*rsignal;
-        }else if(abs(robot_z-robot_initialz)>30 && abs(robot_x-robot_initialx)>20 && rsignal>=1){
+            std::cout<<"f"<<std::endl;
+        }else if(abs(robot_z-robot_initialz)<=30 && abs(robot_x-robot_initialx)>20 && abs(robot_z-robot_initialz)>=5){
+            robot_z-=(robot_speed*rsignal);
+            std::cout<<"a"<<std::endl;
+        }else if(abs(robot_z-robot_initialz)>30 && abs(robot_x-robot_initialx)>20 && rsignal>=0){
             //robot_state=0;
             rsignal=-1;
+            delivered();
+            std::cout<<"b"<<std::endl;
         }else{
             if(rsignal<0 && abs(robot_z-robot_initialz)>30 && abs(robot_x-robot_initialx)>20){
                 robot_z-=robot_speed*rsignal;
+                std::cout<<"c"<<std::endl;
             }else{
-                if(abs(robot_z-robot_initialz)<=30 && abs(robot_x-robot_initialx)>20 && rsignal<0){
+                if(abs(robot_z-robot_initialz)<5 && abs(robot_x-robot_initialx)>20 && rsignal<0){
                     robot_x+=robot_speed*rsignal;
+                    std::cout<<"d"<<std::endl;
                 }else{
+                    std::cout<<"e"<<std::endl;
                 robot_x+=robot_speed*rsignal;
                 if(rsignal<0 && robot_x<=robot_initialx){
                     rsignal=1;
+                    robot_x=robot_initialx;
+                    robot_z=robot_initialz;
+                    robot_angle=0;
+                    reset();
                 }
             }
             }
