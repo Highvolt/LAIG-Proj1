@@ -1,7 +1,7 @@
 #include "Robot.h"
 
-double robot_width=4;
-double robot_length=4;
+double robot_width=5.5;
+double robot_length=5.5;
 double robot_height=2;
 double rims_size=1;
 double rims_width=0.2;

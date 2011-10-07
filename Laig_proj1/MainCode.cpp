@@ -12,7 +12,7 @@
 #include "Room.h"
 #include "Robot.h"
 #include "PaperSheet.h"
-
+#include <iostream>
 // quadricas
 GLUquadric* glQ;	// nec. p/ criar sup. quadraticas (cilindros, esferas...)
 
@@ -72,7 +72,7 @@ int camera = 1;
 
 double robot_initialx = -7.5; //-5(coordenada x do lado direito da linha de impressao) - carpet_width/2
 double robot_initialy = 0.0;
-double robot_initialz = 18.5;  //carpet_long-20 + robot_lenght/2 + 0.5
+double robot_initialz = 19;  //carpet_long-20 + robot_lenght/2 + 0.5
 
 //definicoes camara 2
 double eyex = 0.0;
@@ -262,11 +262,15 @@ void display(void)
     glColor3f(1.0,1.0,1.0);
 	glPushMatrix();
 	glCallList(1);
+	 glDisable(GL_CULL_FACE);
 	glCallList(2);
+	glEnable(GL_CULL_FACE);
+	
 	glCallList(3);
 	draw_machine_animation(-5,0,0);
 	glPopMatrix();
-    glDisable(GL_COLOR_MATERIAL);
+	
+	glDisable(GL_COLOR_MATERIAL);
     
 	// swapping the buffers causes the rendering above to be shown
 	glutSwapBuffers();
@@ -354,6 +358,11 @@ void keyboard(unsigned char key, int x, int y)
 }
 
 
+void animate(void){
+	update_machine();
+	
+}
+
 void myGlutIdle( void )
 {
     /* According to the GLUT specification, the current window is 
@@ -362,7 +371,7 @@ void myGlutIdle( void )
     if ( glutGetWindow() != main_window ) 
         glutSetWindow(main_window);  
     
-    
+	animate();
     glutPostRedisplay();
     
 }
@@ -437,14 +446,22 @@ void inicializacao()
     
 	pixmap.readBMPFile("wall_tex.bmp");
 	pixmap.setTexture(6);
-    
+
     pixmap.readBMPFile("wood3.bmp");
     pixmap.setTexture(7);
+
+	pixmap.readBMPFile("steel_mesh.bmp");
+	pixmap.setTexture(8);
+
+	pixmap.readBMPFile("steve.bmp");
+	pixmap.setTexture(9);
+		pixmap.readBMPFile("steve_2.bmp");
+	pixmap.setTexture(10);
     
 	glNewList(1, GL_COMPILE);
     draw_room(0.0,0.0,0.0);
 	glEndList();
-    
+   
 	glNewList(2, GL_COMPILE);
     draw_machine(-5.0, 0.0, 0.0);
 	glEndList();
