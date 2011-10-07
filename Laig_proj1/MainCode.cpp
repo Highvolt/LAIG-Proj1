@@ -91,7 +91,12 @@ double upx = 0.0;
 double upy = 0.0;
 double upz = -1.0;
 
-
+//////////////////////////
+//camara 3 deslocações
+//////////////////////////
+double cam3x = 0.0;
+double cam3y = 0.0;
+double cam3z = 0.0;
 
 // fonte (global) de luz ambiente 
 float light_ambient[] = {0.6, 0.6, 0.6, 1.0}; /* Set the background ambient lighting. */
@@ -168,6 +173,9 @@ void display(void)
 	}
 	if(camera == 2){
 		gluLookAt(eyex,eyey,eyez,targetx,targety,targetz,upx,upy,upz);
+	}
+    if(camera == 3){
+		gluLookAt(-6 + cam3x, 10 + cam3y, 35.10 + cam3z, robot_x, robot_y, robot_z, 0, 1, 0);
 	}
     
 	// permissao de atribuicao directa de cores
