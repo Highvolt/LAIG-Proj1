@@ -116,39 +116,42 @@ void move_robot(){
     double as=90/10*robot_speed;
     if(robot_state==1){
         
-        std::cout<<"X: "<<robot_x-robot_initialx<<"z: "<< robot_z-robot_initialz<<std::endl;
-        if(abs(robot_x-robot_initialx)>15 && abs(robot_x-robot_initialx)<=20){
+        std::cout<<"X: "<<robot_x-robot_initialx<<"z: "<< robot_initialz-robot_z<<std::endl;
+        if(robot_x-robot_initialx>15 && robot_x-robot_initialx<=20){
             robot_x+=robot_speed/2*rsignal;
             robot_z-=(robot_speed/2*rsignal);
             robot_angle+=as*rsignal;
             std::cout<<"f"<<std::endl;
-        }else if(abs(robot_z-robot_initialz)<=30 && abs(robot_x-robot_initialx)>20 && abs(robot_z-robot_initialz)>=5){
+        }else if(robot_initialz-robot_z<=30 && robot_x-robot_initialx>20 && robot_initialz-robot_z>4.5&& rsignal>0){
             robot_z-=(robot_speed*rsignal);
             std::cout<<"a"<<std::endl;
-        }else if(abs(robot_z-robot_initialz)>30 && abs(robot_x-robot_initialx)>20 && rsignal>=0){
+        }else if(robot_initialz-robot_z>30 && robot_x-robot_initialx>20 && rsignal>=0){
             //robot_state=0;
             rsignal=-1;
             delivered();
             std::cout<<"b"<<std::endl;
         }else{
-            if(rsignal<0 && abs(robot_z-robot_initialz)>30 && abs(robot_x-robot_initialx)>20){
+            if(rsignal<0 && robot_initialz-robot_z>30 && robot_x-robot_initialx>20){
                 robot_z-=robot_speed*rsignal;
                 std::cout<<"c"<<std::endl;
             }else{
-                if(abs(robot_z-robot_initialz)<5 && abs(robot_x-robot_initialx)>20 && rsignal<0){
+                if( robot_initialz-robot_z<5 && robot_x-robot_initialx>20 && rsignal<0){
                     robot_x+=robot_speed*rsignal;
                     std::cout<<"d"<<std::endl;
                 }else{
-                    std::cout<<"e"<<std::endl;
-                robot_x+=robot_speed*rsignal;
-                if(rsignal<0 && robot_x<=robot_initialx){
-                    rsignal=1;
-                    robot_x=robot_initialx;
-                    robot_z=robot_initialz;
-                    robot_angle=0;
-                    reset();
+                    if(robot_initialz-robot_z<=30 && robot_x-robot_initialx>20 && robot_initialz-robot_z>5.0&& rsignal<0){
+                        robot_z-=(robot_speed*rsignal);}else{
+                            std::cout<<"e"<<std::endl;
+                            robot_x+=robot_speed*rsignal;
+                            if(rsignal<0 && robot_x<=robot_initialx){
+                                rsignal=1;
+                                robot_x=robot_initialx;
+                                robot_z=robot_initialz;
+                                robot_angle=0;
+                                reset();
+                            }
+                        }
                 }
-            }
             }
         }
     }/*else if(robot_state==2){
