@@ -23,4 +23,6 @@ void draw_page(double x, double y, double z);
 bool getdone();
 double getjornalsize();
 double getjornal_width();
+void delivered();
+void reset();
 #endif

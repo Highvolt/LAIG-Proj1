@@ -77,6 +77,7 @@ double robot_initialz = 19;  //carpet_long-20 + robot_lenght/2 + 0.5
 double robot_x=robot_initialx;
 double robot_y=robot_initialy;
 double robot_z=robot_initialz;
+int rsignal=1;
 int robot_state=1;
 double robot_speed=0.05;
 double robot_angle=0;
@@ -117,15 +118,27 @@ void move_robot(){
         
         std::cout<<abs(robot_x-robot_initialx)<<std::endl;
         if(abs(robot_x-robot_initialx)>15 && abs(robot_x-robot_initialx)<=20){
-            robot_x+=robot_speed/2;
-            robot_z-=robot_speed/2;
-            robot_angle+=as;
-        }else if(abs(robot_z-robot_initialz)<=30 && abs(robot_x-robot_initialx)>20){
-            robot_z-=robot_speed;
-        }else if(abs(robot_z-robot_initialz)>30 && abs(robot_x-robot_initialx)>20){
-            robot_state=0;
+            robot_x+=robot_speed/2*rsignal;
+            robot_z-=robot_speed/2*rsignal;
+            robot_angle+=as*rsignal;
+        }else if(abs(robot_z-robot_initialz)<=30 && abs(robot_x-robot_initialx)>20 && abs(robot_z-robot_initialz)>=0){
+            robot_z-=robot_speed*rsignal;
+        }else if(abs(robot_z-robot_initialz)>30 && abs(robot_x-robot_initialx)>20 && rsignal>=1){
+            //robot_state=0;
+            rsignal=-1;
         }else{
-            robot_x+=robot_speed;
+            if(rsignal<0 && abs(robot_z-robot_initialz)>30 && abs(robot_x-robot_initialx)>20){
+                robot_z-=robot_speed*rsignal;
+            }else{
+                if(abs(robot_z-robot_initialz)<=30 && abs(robot_x-robot_initialx)>20 && rsignal<0){
+                    robot_x+=robot_speed*rsignal;
+                }else{
+                robot_x+=robot_speed*rsignal;
+                if(rsignal<0 && robot_x<=robot_initialx){
+                    rsignal=1;
+                }
+            }
+            }
         }
     }/*else if(robot_state==2){
       robot_z-=robot_speed;

@@ -339,6 +339,16 @@ void draw_printer(double x, double y, double z){
     
 }
 
+void delivered(){
+    alt.erase(alt.begin(), alt.end());
+    dist.erase(dist.begin(),dist.end());
+}
+
+void reset(){
+    delivered();
+    done=false;
+}
+
 void draw_page(double x, double y, double z){
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,9);
