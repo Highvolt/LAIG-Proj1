@@ -29,6 +29,21 @@ bool sobe=false;
 bool done=false;
 int n_folhas=20;
 
+
+
+// default mat
+float dmat1_shininess[] = {128.0}; 
+float dmat1_specular[] = {0.3, 0.3, 0.3, 1.0};	/* specular reflection. */
+float dmat1_diffuse[] =  {0.7, 0.7, 0.7, 1.0};	/* diffuse reflection. */
+float dmat1_ambient[] =  {0.7, 0.7, 0.7, 1.0};	/* ambient reflection. */
+
+
+// metal
+float met_shininess[] = {230.0}; 
+float met_specular[] = {0.9, 0.9, 0.9, 1.0};	/* specular reflection. */
+float met_diffuse[] =  {0.1, 0.1, 0.1, 1.0};	/* diffuse reflection. */
+float met_ambient[] =  {0.5, 0.5, 0.5, 1.0};	/* ambient reflection. */
+
 bool getdone(){
     return done;
 }
@@ -477,17 +492,45 @@ void draw_guillotine_sides(double x, double y, double z){
 }
 
 void draw_guillotine(double x, double y, double z){
-	glPushMatrix();
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, met_shininess);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR,  met_specular);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE,   met_diffuse);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT,   met_ambient);
+    GLdouble grid2x2[4][3] = {{x-carpet_width+guill_side_size, y+carpet_height+guill_bottom_height, z+guill_position}, {(x-carpet_width+guill_side_size), y+carpet_height+guill_top_height, z+guill_position}, {x-guill_side_size, y+carpet_height+guill_bottom_height, z+guill_position}, {x-guill_side_size, y+carpet_height+guill_top_height, z+guill_position}
+    };
+    GLfloat nrmlcompon[4][3] = {	{  0.0, 0.0, 1.0},
+        {  0.0, 0.0, 1.0}, 
+        {  0.0, 0.0, 1.0},
+        {  0.0, 0.0, 1.0} };
+    
+    glPushMatrix();
 	glTranslated(0.0, 0.0, -20.0);
+    glEnable(GL_MAP2_VERTEX_3);
+    glEnable(GL_MAP2_NORMAL);
+    glMap2d(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 2, 1.0, 0.0, 2*3, 2, &grid2x2[0][0]);
+    glMap2f(GL_MAP2_NORMAL,   0.0, 1.0, 3, 2,  0.0, 1.0, 6, 2,  &nrmlcompon[0][0]);
+    glMapGrid2d( 10, 0.0, 1.0,
+                10, 0.0, 1.0);
+    glEvalMesh2(GL_FILL,
+                0, 10,  
+                0, 10);  
+    
+    glDisable(GL_MAP2_VERTEX_3);
+    glDisable(GL_MAP2_NORMAL);
 	//glDisable( GL_CULL_FACE );
-	glBegin(GL_POLYGON);
+	/*glBegin(GL_POLYGON);
 	glNormal3d(0.0,0.0,1.0);
 	glVertex3d(x-carpet_width+guill_side_size, y+carpet_height+guill_top_height, z+guill_position);
 	glVertex3d(x-carpet_width+guill_side_size, y+carpet_height+guill_bottom_height, z+guill_position);
 	glVertex3d(x-guill_side_size, y+carpet_height+guill_bottom_height, z+guill_position);
 	glVertex3d(x-guill_side_size, y+carpet_height+guill_top_height, z+guill_position);
-	glEnd();
+	glEnd();*/
     //	glEnable( GL_CULL_FACE );
     //	glCullFace(GL_BACK);
 	glPopMatrix();
+    //default again
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, dmat1_shininess);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR,  dmat1_specular);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE,   dmat1_diffuse);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT,   dmat1_ambient);
 }
