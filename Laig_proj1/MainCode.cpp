@@ -80,6 +80,7 @@ float light1_kl = 1.0;
 float light1_kq = 0.0;
 float spotlight_direction[] = {1.0, -1.0, 0.0};
 
+int robot_light_active = 1;
 double robot_initialx = -7.5; //-5(coordenada x do lado direito da linha de impressao) - carpet_width/2
 double robot_initialy = 0.0;
 double robot_initialz = 19;  //carpet_long-20 + robot_lenght/2 + 0.5
@@ -320,7 +321,7 @@ void display(void)
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spotlight_direction);
     //glLightfv(GL_LIGHT1, GL_POSITION, spotlight_position);
     
-    glPopMatrix();
+	glPopMatrix();
     
 	// ... e da esfera que a simboliza
 	glColor3f(1.0,1.0,0.0);		// cor amarela
@@ -330,8 +331,6 @@ void display(void)
 	gluSphere(glQ, symb_light0_radius, symb_light0_slices, symb_light0_stacks);
     glPopMatrix();
 	gluQuadricOrientation( glQ, GLU_OUTSIDE);
-    glEnable(GL_LIGHT1);
-    
 
     
     
@@ -677,6 +676,16 @@ void terminacao()
 	gluDeleteQuadric(glQ);
 }
 
+void robotLight(){
+	if(robot_light_active == 0){
+		glEnable(GL_LIGHT1);
+		robot_light_active = 1;}
+	else if(robot_light_active == 1){
+		glDisable(GL_LIGHT1);
+		robot_light_active = 0;
+	}
+}
+
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
@@ -705,7 +714,9 @@ int main(int argc, char* argv[])
 	GLUI_Translation *trans_z = glui2->add_translation( "Zoom", GLUI_TRANSLATION_Z, &obj_pos[2] );
 	trans_z->set_speed( .10 );
     
-    
+    glui2->add_column( false );
+	GLUI_Button* robot = glui2->add_button("Luz do Robot", 1, (GLUI_Update_CB)robotLight);
+
 	/* We register the idle callback with GLUI, not with GLUT */
 	GLUI_Master.set_glutIdleFunc( myGlutIdle );
     
