@@ -201,6 +201,7 @@ void display_cam_number(int n){
 	glPopMatrix();
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
+    glMatrixMode( GL_MODELVIEW );
 
 }
 
@@ -283,6 +284,7 @@ void display(void)
 	glPopMatrix();
     */
 	
+    
 	// Actualizacao da posicao da fonte de luz...
 	light0_position[0] = light0x;	// por razoes de eficiencia, os restantes 
 	light0_position[1] = light0y;	// parametros _invariaveis_ da LIGHT0 mantem os valores
@@ -328,7 +330,7 @@ void display(void)
 	gluSphere(glQ, symb_light0_radius, symb_light0_slices, symb_light0_stacks);
     glPopMatrix();
 	gluQuadricOrientation( glQ, GLU_OUTSIDE);
-    
+    glEnable(GL_LIGHT1);
     
 
     
