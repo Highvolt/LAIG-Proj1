@@ -317,7 +317,7 @@ void display(void)
     
     
     
-    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 30.0);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 20.0);
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spotlight_direction);
     //glLightfv(GL_LIGHT1, GL_POSITION, spotlight_position);
     
@@ -607,7 +607,7 @@ void inicializacao()
 	glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION,    light1_kl);
 	glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, light1_kq);
     
-    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 30.0);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 20.0);
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spotlight_direction);
     glLightfv(GL_LIGHT1, GL_POSITION, spotlight_position);
     
