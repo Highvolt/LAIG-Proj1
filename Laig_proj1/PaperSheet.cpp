@@ -413,6 +413,11 @@ void draw_printer_cylinder(double x, double y, double z){
 	
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,10);
+    glMatrixMode(GL_TEXTURE);
+    glPushMatrix();
+    glScaled(-1, 1, 1);
+    
+    glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     
     glTranslated(0.0, 0.0, -20.0);
@@ -436,9 +441,13 @@ void draw_printer_cylinder(double x, double y, double z){
     glPushMatrix();
     gluCylinder(w1, cylinder_diameter/2, cylinder_diameter/2, carpet_width, 10, 1);
     glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+    glPopMatrix();
     //glEnable( GL_CULL_FACE );
     // glCullFace(GL_BACK);
+    glMatrixMode(GL_TEXTURE);
     glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
     glDisable(GL_TEXTURE_2D);
     
 }
