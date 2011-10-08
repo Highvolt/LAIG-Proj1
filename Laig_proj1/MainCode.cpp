@@ -581,7 +581,7 @@ void inicializacao()
 	// Permitir calculos de iluminacao
 	glEnable(GL_LIGHTING);
 	// "Acender" a fonte de luz GL_LIGHT0
-	//glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT0);
     glEnable(GL_LIGHT1);
     
 	// Declaracoe para shading
