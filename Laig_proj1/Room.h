@@ -35,7 +35,7 @@ double get_x_room_mov();
 double get_z_room_mov();
 void draw_room(double x,double y,double z);
 void draw_backwall(double x, double y, double z);
-void draw_curve_wall(double x, double y, double z, int n_steps);
+void draw_curve_wall(double x, double y, double z, int n_steps, int n_vsteps);
 void draw_big_wall(double x, double y, double z);
 void draw_ceiling(double x, double y, double z);
 void draw_floor(double x, double y, double z);
