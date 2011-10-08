@@ -4,7 +4,7 @@
 #ifdef __APPLE__
 #include <GLUI/GLUI.h>
 #else
-#include <glui.h>
+#include <gl/glui.h>
 #endif
 
 #include <math.h>
@@ -109,6 +109,9 @@ double cam3x = 0.0;
 double cam3y = 0.0;
 double cam3z = 0.0;
 
+int width;
+int height;
+
 // fonte (global) de luz ambiente 
 float light_ambient[] = {0.6, 0.6, 0.6, 1.0}; /* Set the background ambient lighting. */
 
@@ -175,6 +178,32 @@ void move_robot(){
       }*/
 }
 
+void display_cam_number(int n){
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, width, 0, height);
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glDisable(GL_LIGHTING);
+	glColor3f(1.0,1.0,0.0);
+	glRasterPos2i(10, height - 24);
+	if(n == 1)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '1');
+	else if(n==2)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '2');
+	else if(n==3)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '3');
+	glEnable(GL_LIGHTING);
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+
+}
+
 
 void display(void)
 {
@@ -196,7 +225,7 @@ void display(void)
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
 	if(camera == 1){
-        
+        display_cam_number(1);
         // afasta a cena de 70 unidades mais a dist�ncia que...
         // ...decorre da utilizacao do botao de afastamento (pseudo-zoom)
         glTranslatef( obj_pos[0], obj_pos[1], -obj_pos[2]-70 );
@@ -213,8 +242,10 @@ void display(void)
 	}
 	if(camera == 2){
 		gluLookAt(eyex,eyey,eyez,targetx,targety,targetz,upx,upy,upz);
+		display_cam_number(2);
 	}
     if(camera == 3){
+		display_cam_number(3);
 		gluLookAt(-6 + cam3x, 10 + cam3y, 35.10 + cam3z, robot_x, robot_y, robot_z, 0, 1, 0);
 	}
     
@@ -439,6 +470,8 @@ void processPassiveMouseMoved(int x, int y)
 void reshape(int w, int h)
 {
 	int tx, ty, tw, th;
+	width = w;
+	height = h;
     
 	GLUI_Master.get_viewport_area( &tx, &ty, &tw, &th );
 	glViewport( tx, ty, tw, th );
