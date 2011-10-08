@@ -264,9 +264,9 @@ void display(void)
    
 
     glPushMatrix();
-    //glTranslated(robot_x, robot_y, robot_z-5.5/2);
+    glTranslated(robot_x+5.5/2, robot_y, robot_z);
     glRotated(robot_angle, 0, 1, 0);
-    glTranslated(0, 5, 5.5/2);
+    glTranslated(0, candleheight(), 0);
     glLightfv(GL_LIGHT1, GL_POSITION, spotlight_position);
     
     
@@ -280,12 +280,12 @@ void display(void)
     gluQuadricOrientation(glQ, GLU_OUTSIDE);
     
     
-    glPopMatrix();
+    
     glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 30.0);
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spotlight_direction);
     //glLightfv(GL_LIGHT1, GL_POSITION, spotlight_position);
     
-    
+    glPopMatrix();
     
 	// ... e da esfera que a simboliza
 	glColor3f(1.0,1.0,0.0);		// cor amarela
