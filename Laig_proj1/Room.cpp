@@ -23,6 +23,21 @@ double impostor_height=50.0;
 double impostor_width=impostor_height*1.6;
 double number_of_tiles_per_unit=0.2;
 
+
+double get_door_distance(){
+    return small_wall_part1;
+}
+
+double get_x_room_mov(){
+    return  small_wall/2;
+}
+double get_doorwidth(){
+    return door_width;
+}
+double get_z_room_mov(){
+    return big_wall_width/2;
+}
+
 void draw_room(double x,double y,double z){
 	draw_impostors(x-small_wall/2-small_wall/8,y-impostor_floor_diff,z-big_wall_width/2-big_wall_width/8);
 

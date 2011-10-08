@@ -19,13 +19,15 @@ double guill_ani=-guill_bottom_height;
 double angle=0;
 double empurrao=1;
 double jornal_size=cylinder_diameter*3.1415;
-double velocidade_ang=9;
+double velocidade_ang=6;
 double velocidade_jornal=(velocidade_ang*0.0174532925)*(cylinder_diameter/2);
 double guill_speed=4*guill_bottom_height/(jornal_size/velocidade_jornal);
 std::vector<double> alt;
 std::vector<double> dist;
+double dcarpet=0;
 bool sobe=false;
 bool done=false;
+int n_folhas=20;
 
 bool getdone(){
     return done;
@@ -114,6 +116,7 @@ void myBox(double dx, double dy, double dz)
 
 void update_machine(){
 	if(!done){
+        bool stop=false;
         if(guill_ani<-guill_bottom_height){
             sobe=true;
             //std::cout<<"sobe"<<std::endl;
@@ -126,7 +129,7 @@ void update_machine(){
             dist.push_back(0);
             alt.push_back(0);
         }else{
-            if(dist[0]>=dist.size()*jornal_size && dist.size()<5){
+            if(dist[dist.size()-1]>=jornal_size && dist.size()<n_folhas){
                 dist.push_back(0);
                 alt.push_back(0);
                 std::cout<<"Novo Jornal"<<std::endl;
@@ -138,20 +141,31 @@ void update_machine(){
             if(dist[i]<carpet_long+jornal_size/2+empurrao)
                 dist[i]+=velocidade_jornal;
             else{
-                if(alt[i]<=carpet_height/2-(i/10)){
+                if(alt[i]<=carpet_height/2.0+carpet_height/4.0-((double)i/10.0)){
                     alt[i]+=0.1;
-                }else if(i==4){
+                }else if(i==n_folhas-1){
                     done=true;
                 }
             }
         }
+        if(dist.size()>=n_folhas){
+            if(dist[n_folhas-1]>=guill_position){
+                if(guill_ani< -guill_bottom_height){
+                    stop=true;  
+                }
+            }
+        }
+        if(!stop)
         if(dist[0]>=(guill_position-jornal_size/2)){
             if(!sobe){
                 guill_ani-=guill_speed;
             }else{
                 guill_ani+=guill_speed;
             }}
-        
+        if(!(dcarpet<30)){
+            dcarpet=0;
+        }
+        dcarpet+=(30/carpet_long)*velocidade_jornal;
         if(angle>=360){
             angle=0;
             std::cout<<"Completou"<<std::endl;
@@ -178,9 +192,26 @@ void draw_machine_animation(double x, double y, double z){
         draw_page(x,y,z);
     }
 	draw_guillotine(x,y+guill_ani,z);
+    draw_moving_carpet(x,y,z);
 }
 
 
+void draw_moving_carpet(double x, double y, double z){
+    glPushMatrix();
+	glTranslated(0.0, 0.0, -20.0);
+    //parte de cima
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D,8);
+	glBegin(GL_POLYGON);
+    glNormal3d(0.0,1.0,0.0);
+    glTexCoord2d(dcarpet, 10.0);glVertex3d(x-carpet_width, y+carpet_height, z+carpet_long);
+    glTexCoord2d(dcarpet, 0.0);glVertex3d(x, y+carpet_height, z+carpet_long);
+    glTexCoord2d(30.0+dcarpet, 0.0);glVertex3d(x, y+carpet_height, z);
+    glTexCoord2d(30.0+dcarpet, 10.0);glVertex3d(x-carpet_width, y+carpet_height, z);
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+    glPopMatrix();
+}
 
 void draw_carpet(double x, double y, double z){
 	glPushMatrix();
@@ -226,17 +257,7 @@ void draw_carpet(double x, double y, double z){
     glVertex3d(x,y+carpet_height,z);
 	glEnd();
     
-	//parte de cima
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D,8);
-	glBegin(GL_POLYGON);
-    glNormal3d(0.0,1.0,0.0);
-    glTexCoord2d(0.0, 10.0);glVertex3d(x-carpet_width, y+carpet_height, z+carpet_long);
-    glTexCoord2d(0.0, 0.0);glVertex3d(x, y+carpet_height, z+carpet_long);
-    glTexCoord2d(30.0, 0.0);glVertex3d(x, y+carpet_height, z);
-    glTexCoord2d(30.0, 10.0);glVertex3d(x-carpet_width, y+carpet_height, z);
-	glEnd();
-	glDisable(GL_TEXTURE_2D);
+
 	//parte de baixo
     
 	glBegin(GL_POLYGON);
@@ -353,22 +374,30 @@ void draw_page(double x, double y, double z){
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D,9);
 	for(int i=0; i<dist.size();i++){
-        glBegin(GL_POLYGON);
-        glNormal3d(0.0,1.0,0.0);
+        
         if(!done){    
-            glTexCoord2d(0.0,1.0); glVertex3d(x-carpet_width, y+carpet_height+0.1-alt[i], z-carpet_long/2-jornal_size+dist[i]);
-            glTexCoord2d(0.0,0.0); glVertex3d(x-carpet_width, y+carpet_height+0.1-alt[i], z-carpet_long/2+dist[i]);
-            glTexCoord2d(1.0,0.0); glVertex3d(x, y+carpet_height+0.1-alt[i], z-carpet_long/2+dist[i]);
-            glTexCoord2d(1.0,1.0); glVertex3d(x, y+carpet_height+0.1-alt[i], z-carpet_long/2-jornal_size+dist[i]);}else
-            {
-                    
-                    glTexCoord2d(1.0,0.0); glVertex3d(carpet_width, alt[i], jornal_size);
-                    glTexCoord2d(1.0,1.0); glVertex3d(carpet_width, alt[i],0.0 );
-                    glTexCoord2d(0.0,1.0); glVertex3d(0.0, alt[i], 0.0);
-                    glTexCoord2d(0.0,0.0); glVertex3d(0.0, alt[i], jornal_size);
-                
-            }
+            glBegin(GL_POLYGON);
+            glNormal3d(0.0,1.0,0.0);
+            glTexCoord2d(0.0,1.0); glVertex3d(x-carpet_width+carpet_width/10, y+carpet_height+0.1-alt[i], z-carpet_long/2-jornal_size+dist[i]);
+            glTexCoord2d(0.0,0.0); glVertex3d(x-carpet_width+carpet_width/10, y+carpet_height+0.1-alt[i], z-carpet_long/2+dist[i]);
+            glTexCoord2d(1.0,0.0); glVertex3d(x-carpet_width/10, y+carpet_height+0.1-alt[i], z-carpet_long/2+dist[i]);
+            glTexCoord2d(1.0,1.0); glVertex3d(x-carpet_width/10, y+carpet_height+0.1-alt[i], z-carpet_long/2-jornal_size+dist[i]);
         glEnd();
+        }else              
+            {
+                glPushMatrix();
+                
+                    glTranslated(0, carpet_height+0.1-alt[i] , 0);
+                glBegin(GL_POLYGON);
+                glNormal3d(0.0,1.0,0.0);
+                    glTexCoord2d(1.0,0.0); glVertex3d(carpet_width-carpet_width/10, 0, jornal_size);
+                    glTexCoord2d(1.0,1.0); glVertex3d(carpet_width-carpet_width/10, 0,0.0 );
+                    glTexCoord2d(0.0,1.0); glVertex3d(carpet_width/10, 0, 0.0);
+                    glTexCoord2d(0.0,0.0); glVertex3d(carpet_width/10, 0, jornal_size);
+                glEnd();
+                glPopMatrix();
+            }
+       
 	}
 	glDisable(GL_TEXTURE_2D);
 }

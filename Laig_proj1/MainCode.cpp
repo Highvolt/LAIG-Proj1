@@ -23,6 +23,7 @@ GLUquadric* glQ;	// nec. p/ criar sup. quadraticas (cilindros, esferas...)
 #define INITIALPOS_X 200
 #define INITIALPOS_Y 200
 
+
 const int TRUE  = 1;
 const int FALSE = 0;
 
@@ -114,32 +115,35 @@ RGBpixmap pixmap;
 
 void move_robot(){
     double as=90/10*robot_speed;
+    double xmov_max=get_doorwidth()/2+get_door_distance()+((-get_x_room_mov())-robot_initialx);
+    double zmov_max=get_z_room_mov()+(get_z_room_mov()-robot_initialz);
+    std::cout<<zmov_max<<std::endl;
     if(robot_state==1){
         
         //std::cout<<"X: "<<robot_x-robot_initialx<<"z: "<< robot_initialz-robot_z<<std::endl;
-        if(robot_x-robot_initialx>15 && robot_x-robot_initialx<=20){
+        if(robot_x-robot_initialx>xmov_max-5 && robot_x-robot_initialx<=xmov_max){
             robot_x+=robot_speed/2*rsignal;
             robot_z-=(robot_speed/2*rsignal);
             robot_angle+=as*rsignal;
             ////////std::cout<<"f"<<std::endl;
-        }else if(robot_initialz-robot_z<=30 && robot_x-robot_initialx>20 && robot_initialz-robot_z>4.5&& rsignal>0){
+        }else if(robot_initialz-robot_z<=zmov_max && robot_x-robot_initialx>xmov_max && robot_initialz-robot_z>4.5&& rsignal>0){
             robot_z-=(robot_speed*rsignal);
             //std::cout<<"a"<<std::endl;
-        }else if(robot_initialz-robot_z>30 && robot_x-robot_initialx>20 && rsignal>=0){
+        }else if(robot_initialz-robot_z>zmov_max && robot_x-robot_initialx>xmov_max && rsignal>=0){
             //robot_state=0;
             rsignal=-1;
             delivered();
             //std::cout<<"b"<<std::endl;
         }else{
-            if(rsignal<0 && robot_initialz-robot_z>30 && robot_x-robot_initialx>20){
+            if(rsignal<0 && robot_initialz-robot_z>zmov_max && robot_x-robot_initialx>xmov_max){
                 robot_z-=robot_speed*rsignal;
                 //std::cout<<"c"<<std::endl;
             }else{
-                if( robot_initialz-robot_z<5 && robot_x-robot_initialx>20 && rsignal<0){
+                if( robot_initialz-robot_z<5 && robot_x-robot_initialx>xmov_max && rsignal<0){
                     robot_x+=robot_speed*rsignal;
                     //std::cout<<"d"<<std::endl;
                 }else{
-                    if(robot_initialz-robot_z<=30 && robot_x-robot_initialx>20 && robot_initialz-robot_z>5.0&& rsignal<0){
+                    if(robot_initialz-robot_z<=zmov_max && robot_x-robot_initialx>xmov_max && robot_initialz-robot_z>5.0&& rsignal<0){
                         robot_z-=(robot_speed*rsignal);}else{
                             //std::cout<<"e"<<std::endl;
                             robot_x+=robot_speed*rsignal;
@@ -210,7 +214,7 @@ void display(void)
 	// e' o caso dos eixos e da esfera que simboliza a fonte de luz...
 	glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 	glEnable(GL_COLOR_MATERIAL);
-    
+    /*
 	// cilindro representativo do eixo X
 	glColor3f(1.0,0.0,0.0);		// vermelho
 	glPushMatrix();
@@ -237,7 +241,7 @@ void display(void)
                 axis_lenght, axis_nslices, axis_nstacks);   // nao tem bases
 	
 	glPopMatrix();
-    
+    */
 	
 	// Actualizacao da posicao da fonte de luz...
 	light0_position[0] = light0x;	// por razoes de eficiencia, os restantes 
@@ -261,7 +265,7 @@ void display(void)
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR,  mat1_specular);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE,   mat1_diffuse);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT,   mat1_ambient);
-    
+   
 	// desenha rectangulo paralelo ao plano XY, com texturas
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, 1);	// activa a textura 1 (feup)
@@ -333,16 +337,17 @@ void display(void)
 	glEnable(GL_CULL_FACE);
 	glPushMatrix();
     //
-    glTranslated(robot_x, robot_y, robot_z);
+    glTranslated(robot_x-5.5/2, robot_y, robot_z-5.5/2);
     glRotated(robot_angle, 0, 1, 0);
+    glTranslated(5.5/2, 0, 5.5/2);
     glCallList(3);
     glPopMatrix();
     glPushMatrix();
     //glTranslated(-robot_x/2, 0, -robot_z);
     if(getdone()){
-        glTranslated(robot_x, robot_y, robot_z);
+        glTranslated(robot_x-getjornal_width()/2, robot_y, robot_z-getjornalsize()/2);
         glRotated(robot_angle, 0, 1, 0);
-        glTranslated(-getjornalsize()/2, 0, -getjornalsize()/2);
+        //glTranslated(-getjornalsize()/2, 0, -getjornalsize()/2);
         draw_page(0,0,0);
         
     }

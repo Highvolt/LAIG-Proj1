@@ -25,4 +25,5 @@ double getjornalsize();
 double getjornal_width();
 void delivered();
 void reset();
+void draw_moving_carpet(double x, double y, double z);
 #endif

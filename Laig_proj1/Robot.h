@@ -6,6 +6,8 @@
 #include <math.h> 
 
 
+
+
 void draw_robot(double x, double y, double z);
 void draw_box(double x, double y, double z);
 void draw_wheel();
