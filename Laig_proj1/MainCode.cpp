@@ -262,11 +262,13 @@ void display(void)
     
     //////LIGHT 1 Spotlight
    
-
+//////
+    ////
+    ////
     glPushMatrix();
-    glTranslated(robot_x+5.5/2, robot_y, robot_z);
+    glTranslated(robot_x-5.5/2, robot_y, robot_z-5.5/2);
     glRotated(robot_angle, 0, 1, 0);
-    glTranslated(0, candleheight(), 0);
+    glTranslated(5.5, candleheight(), 5.5/2);
     glLightfv(GL_LIGHT1, GL_POSITION, spotlight_position);
     
     
