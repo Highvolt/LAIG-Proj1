@@ -71,6 +71,15 @@ int symb_light0_slices = 8;
 int symb_light0_stacks =8;
 int camera = 1;
 
+float spotlight_position[]={0.0,0.0,0.0,1.0};
+float light1_ambient[] = {0.0, 0.0, 0.0, 1.0};
+float light1_diffuse[] = {13.0, 13.0, 13.0, 1.0};
+float light1_specular[] = {6.0, 6.0, 6.0, 1.0};
+float light1_kc = 0.0;
+float light1_kl = 1.0;
+float light1_kq = 0.0;
+float spotlight_direction[] = {1.0, -1.0, 0.0};
+
 double robot_initialx = -7.5; //-5(coordenada x do lado direito da linha de impressao) - carpet_width/2
 double robot_initialy = 0.0;
 double robot_initialz = 19;  //carpet_long-20 + robot_lenght/2 + 0.5
@@ -249,6 +258,35 @@ void display(void)
 	light0_position[2] = light0z;	// definidos na funcao de inicializacao
 	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
     
+    
+    
+    //////LIGHT 1 Spotlight
+   
+
+    glPushMatrix();
+    //glTranslated(robot_x, robot_y, robot_z-5.5/2);
+    glRotated(robot_angle, 0, 1, 0);
+    glTranslated(0, 5, 5.5/2);
+    glLightfv(GL_LIGHT1, GL_POSITION, spotlight_position);
+    
+    
+    //esfera da luz do robot
+    glColor3f(1.0,1.0,0.0);		// cor amarela
+    gluQuadricOrientation(glQ, GLU_INSIDE);
+    glPushMatrix();
+    glTranslated(spotlight_position[0],spotlight_position[1],spotlight_position[2]);
+    gluSphere(glQ, symb_light0_radius, symb_light0_slices, symb_light0_stacks);
+    glPopMatrix();
+    gluQuadricOrientation(glQ, GLU_OUTSIDE);
+    
+    
+    glPopMatrix();
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 30.0);
+    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spotlight_direction);
+    //glLightfv(GL_LIGHT1, GL_POSITION, spotlight_position);
+    
+    
+    
 	// ... e da esfera que a simboliza
 	glColor3f(1.0,1.0,0.0);		// cor amarela
 	gluQuadricOrientation( glQ, GLU_INSIDE);
@@ -257,6 +295,10 @@ void display(void)
 	gluSphere(glQ, symb_light0_radius, symb_light0_slices, symb_light0_stacks);
     glPopMatrix();
 	gluQuadricOrientation( glQ, GLU_OUTSIDE);
+    
+    
+
+    
     
     
 	//glDisable(GL_COLOR_MATERIAL);
@@ -521,12 +563,24 @@ void inicializacao()
 	//glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 90.0);
 	//glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spot_direction);
 	//glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+    //SPOTLIGHT
+    glLightfv(GL_LIGHT1, GL_AMBIENT, light1_ambient);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);
+	glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION,  light1_kc);
+	glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION,    light1_kl);
+	glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, light1_kq);
+    
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 30.0);
+    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spotlight_direction);
+    glLightfv(GL_LIGHT1, GL_POSITION, spotlight_position);
+    
     
 	// Permitir calculos de iluminacao
 	glEnable(GL_LIGHTING);
 	// "Acender" a fonte de luz GL_LIGHT0
-	glEnable(GL_LIGHT0);
-    
+	//glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
     
 	// Declaracoe para shading
 	glShadeModel(GL_SMOOTH);			// GL_FLAT / GL_SMOOTH
