@@ -144,8 +144,8 @@ void draw_backwall(double x, double y, double z){
 void draw_curve_wall(double x, double y, double z, int n_steps, int n_vsteps){
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, 6);
-    int nreph=1;
-    int nrepv=1;
+    int nreph=10;
+    int nrepv=5;
 	double z_step=big_wall_width/n_steps;
     double y_step=room_height/n_vsteps;
 	double wave_lenght=(2*PI/big_wall_width);
@@ -176,6 +176,7 @@ void draw_curve_wall(double x, double y, double z, int n_steps, int n_vsteps){
             glTexCoord2f((i-1)*z_step_tex,(j-1)*y_step_tex) ; glVertex3d(x_ant, y+(j-1)*y_step, z_ant);	
             glEnd();
         }
+       
 		//parte do chão e tecto curva
 		glBegin(GL_POLYGON);
 		glNormal3d(0,1,0);
@@ -200,8 +201,8 @@ void draw_curve_wall(double x, double y, double z, int n_steps, int n_vsteps){
 		z_ant=new_z;
 		x_ant=new_x;
     }
-    
-	glDisable(GL_TEXTURE_2D);
+     glDisable(GL_TEXTURE_2D);
+	
 }
 
 
