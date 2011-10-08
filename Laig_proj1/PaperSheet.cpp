@@ -21,7 +21,7 @@ double empurrao=1;
 double jornal_size=cylinder_diameter*3.1415;
 double velocidade_ang=6;
 double velocidade_jornal=(velocidade_ang*0.0174532925)*(cylinder_diameter/2);
-double guill_speed=4*guill_bottom_height/(jornal_size/velocidade_jornal);
+double guill_speed=4*(guill_bottom_height*velocidade_jornal)/(jornal_size);
 std::vector<double> alt;
 std::vector<double> dist;
 double dcarpet=0;
@@ -119,10 +119,12 @@ void update_machine(){
         bool stop=false;
         if(guill_ani<-guill_bottom_height){
             sobe=true;
+            guill_ani=-guill_bottom_height;
             //std::cout<<"sobe"<<std::endl;
         }
         if((guill_ani> guill_bottom_height)){
             sobe=false;
+            guill_ani=guill_bottom_height;
             //std::cout<<"desce "<<guill_ani<<" : "<<guill_bottom_height<<std::endl;
         }
         if(dist.size()==0){
@@ -139,7 +141,9 @@ void update_machine(){
             //dist[i]+=(0.5*0.0174532925)/(cylinder_diameter/2);
             //dist[i]+=1/(cylinder_diameter);
             if(dist[i]<carpet_long+jornal_size/2+empurrao)
-                dist[i]+=velocidade_jornal;
+                if(dist[i]<=guill_position+jornal_size){dist[i]+=velocidade_jornal;}else{
+                dist[i]+=velocidade_jornal*2;
+                }
             else{
                 if(alt[i]<=carpet_height/2.0+carpet_height/4.0-((double)i/10.0)){
                     alt[i]+=0.1;
@@ -150,7 +154,7 @@ void update_machine(){
         }
         if(dist.size()>=n_folhas){
             if(dist[n_folhas-1]>=guill_position){
-                if(guill_ani< -guill_bottom_height){
+                if(guill_ani<= -guill_bottom_height){
                     stop=true;  
                 }
             }
