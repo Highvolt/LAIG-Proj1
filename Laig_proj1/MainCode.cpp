@@ -421,7 +421,7 @@ void keyboard(unsigned char key, int x, int y)
         case '3':
             camera = 3;
             break;
-        case 'w':
+        /*case 'w':
             light0y++;
             break;
         case 's':
@@ -438,7 +438,26 @@ void keyboard(unsigned char key, int x, int y)
             break;	
         case 'f':
             light0z++;
-            break;
+            break;*/
+        case 'j':
+        	cam3x = cam3x - 0.5;
+        	break;
+        case 'l':
+        	cam3x = cam3x + 0.5;
+        	break;
+        case 'i':
+        	cam3y = cam3y + 0.5;
+        	break;
+        case 'k':
+        	cam3y = cam3y - 0.5;
+        	break;
+        case 'q':
+        	cam3z = cam3z - 0.5;
+        	break;
+        case 'a':
+        	cam3z = cam3z + 0.5;
+        	break;
+
     }
 }
 
