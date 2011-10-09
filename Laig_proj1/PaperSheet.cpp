@@ -34,7 +34,7 @@ int n_folhas=20;
 // default mat
 float dmat1_shininess[] = {128.0}; 
 float dmat1_specular[] = {0.3, 0.3, 0.3, 1.0};	/* specular reflection. */
-float dmat1_diffuse[] =  {0.7, 0.7, 0.7, 1.0};	/* diffuse reflection. */
+float dmat1_diffuse[] =  {0.8, 0.8, 0.8, 1.0};	/* diffuse reflection. */
 float dmat1_ambient[] =  {0.7, 0.7, 0.7, 1.0};	/* ambient reflection. */
 
 

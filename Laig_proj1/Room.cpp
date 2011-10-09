@@ -282,10 +282,10 @@ void draw_floor(double x, double y, double z){
         {  0.0, 1.0, 0.0}, 
         {  0.0, 1.0, 0.0},
         {  0.0, 1.0, 0.0} };
-    GLfloat textpoints[4][2] = {	{ 1.0, 0.0},
+    GLfloat textpoints[4][2] = {	{ (small_wall+8)*number_of_tiles_per_unit, 0.0},
         { 0.0, 0.0}, 
-        { 1.0, 1.0},
-        { 0.0, 1.0} };
+        { (x+small_wall+8)*number_of_tiles_per_unit, big_wall_width*number_of_tiles_per_unit},
+        { 0.0, big_wall_width*number_of_tiles_per_unit} };
     
     
     glEnable(GL_MAP2_VERTEX_3);
@@ -297,7 +297,7 @@ void draw_floor(double x, double y, double z){
     glMapGrid2d( 80, 0.0, 1.0,
                 200, 0.0, 1.0);
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, 6);
+    glBindTexture(GL_TEXTURE_2D, 12);
     
     
     glEvalMesh2(GL_FILL,

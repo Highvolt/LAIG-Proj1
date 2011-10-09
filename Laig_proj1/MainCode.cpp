@@ -48,7 +48,7 @@ int axis_nstacks = 1;
 // declaracoes para as paredes
 float mat1_shininess[] = {128.0}; 
 float mat1_specular[] = {0.3, 0.3, 0.3, 1.0};	/* specular reflection. */
-float mat1_diffuse[] =  {0.7, 0.7, 0.7, 1.0};	/* diffuse reflection. */
+float mat1_diffuse[] =  {0.8, 0.8, 0.8, 1.0};	/* diffuse reflection. */
 float mat1_ambient[] =  {0.7, 0.7, 0.7, 1.0};	/* ambient reflection. */
 
 float roomX = 30;  /* metade... */
@@ -73,8 +73,8 @@ int camera = 1;
 
 float spotlight_position[]={0.0,0.0,0.0,1.0};
 float light1_ambient[] = {0.0, 0.0, 0.0, 1.0};
-float light1_diffuse[] = {13.0, 13.0, 13.0, 1.0};
-float light1_specular[] = {6.0, 6.0, 6.0, 1.0};
+float light1_diffuse[] = {100.0, 100.0, 100.0, 1.0};
+float light1_specular[] = {30.0, 30.0, 30.0, 1.0};
 float light1_kc = 0.0;
 float light1_kl = 1.0;
 float light1_kq = 0.0;
@@ -665,6 +665,9 @@ void inicializacao()
     
     pixmap.readBMPFile("robot.bmp");
     pixmap.setTexture(11);
+    
+    pixmap.readBMPFile("floor.bmp");
+    pixmap.setTexture(12);
     
 	glNewList(1, GL_COMPILE);
     draw_room(0.0,0.0,0.0);
