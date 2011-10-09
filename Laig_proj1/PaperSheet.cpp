@@ -149,7 +149,7 @@ void update_machine(){
             if(dist[dist.size()-1]>=jornal_size && dist.size()<n_folhas){
                 dist.push_back(0);
                 alt.push_back(0);
-                std::cout<<"Novo Jornal"<<std::endl;
+                //std::cout<<"Novo Jornal"<<std::endl;
             }
         }
         for(int i=0;i<dist.size();i++){
@@ -187,7 +187,7 @@ void update_machine(){
         dcarpet+=(30/carpet_long)*velocidade_jornal;
         if(angle>=360){
             angle=0;
-            std::cout<<"Completou"<<std::endl;
+            //std::cout<<"Completou"<<std::endl;
         }
         angle+=velocidade_ang;
     }

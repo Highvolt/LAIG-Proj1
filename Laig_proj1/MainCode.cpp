@@ -130,7 +130,7 @@ void move_robot(){
     double as=90/10*robot_speed;
     double xmov_max=get_doorwidth()/2+get_door_distance()+((-get_x_room_mov())-robot_initialx);
     double zmov_max=get_z_room_mov()+(get_z_room_mov()-robot_initialz);
-    std::cout<<zmov_max<<std::endl;
+    //std::cout<<zmov_max<<std::endl;
     if(robot_state==1){
         
         //std::cout<<"X: "<<robot_x-robot_initialx<<"z: "<< robot_initialz-robot_z<<std::endl;
@@ -634,7 +634,7 @@ void inicializacao()
     
     
 	// Texturas a utilizar (ver classe RGBpixmap)
-	pixmap.readBMPFile("feup.bmp");
+	/*pixmap.readBMPFile("feup.bmp");
 	pixmap.setTexture(1);
     
 	pixmap.readBMPFile("tile.bmp");
@@ -644,7 +644,7 @@ void inicializacao()
 	pixmap.setTexture(3);
     
 	pixmap.readBMPFile("mandril.bmp");
-	pixmap.setTexture(4);
+	pixmap.setTexture(4);*/
     
 	pixmap.readBMPFile("paisagem.bmp");
 	pixmap.setTexture(5);
