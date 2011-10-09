@@ -43,4 +43,5 @@ void draw_impostors(double x,double y, double z);
 double get_door_distance();
 double get_doorwidth();
 double get_room_height();
+void draw_frontwall(double x, double y, double z);
 #endif

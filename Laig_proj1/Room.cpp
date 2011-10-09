@@ -49,6 +49,7 @@ void draw_room(double x,double y,double z){
     draw_big_wall(x-small_wall/2,y,z-big_wall_width/2);
 	draw_ceiling(x-small_wall/2,y,z-big_wall_width/2);
 	draw_floor(x-small_wall/2,y,z-big_wall_width/2);
+    draw_frontwall(x-small_wall/2,y,z-big_wall_width/2);
 }
 
 void draw_impostors(double x,double y, double z){
@@ -309,3 +310,26 @@ void draw_floor(double x, double y, double z){
     glDisable(GL_TEXTURE_2D);
     
 }
+
+
+void draw_frontwall(double x, double y, double z){
+    
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, 6);
+	double num=small_wall*number_of_tiles_per_unit;
+	double numh=room_height*number_of_tiles_per_unit;
+	glBegin(GL_POLYGON);
+	glNormal3d(0.0,0.0,-1.0);  // esta normal fica comum aos 4 vertices
+	 glTexCoord2f(0.0,0.0);glVertex3d(x, y, z+big_wall_width);
+     glTexCoord2f(0.0,numh);glVertex3d(x,y+room_height , z+big_wall_width);	
+    glTexCoord2f(num,numh);glVertex3d(x+small_wall, y+room_height,  z+big_wall_width);	    
+
+    glTexCoord2f(num,0.0); glVertex3d(x+small_wall, y,  z+big_wall_width); 
+       
+   	
+	glEnd();
+	glDisable(GL_TEXTURE_2D);
+	
+    
+}
+
