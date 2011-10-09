@@ -15,7 +15,7 @@
 #include <iostream>
 // quadricas
 GLUquadric* glQ;	// nec. p/ criar sup. quadraticas (cilindros, esferas...)
-
+unsigned int mili=10; //tempo do timer das animacoes.
 
 // dimensoes e localizacao da janela
 #define DIMX 500
@@ -545,6 +545,15 @@ void animate(void){
 	
 }
 
+void myUpdate(int i){
+    
+    animate();
+    if(getdone())
+        move_robot();
+    
+    glutTimerFunc(mili, myUpdate, 0);
+}
+
 void myGlutIdle( void )
 {
     /* According to the GLUT specification, the current window is 
@@ -552,10 +561,10 @@ void myGlutIdle( void )
      it if necessary */
     if ( glutGetWindow() != main_window ) 
         glutSetWindow(main_window);  
-    
+    /*
 	animate();
     if(getdone())
-        move_robot();
+        move_robot();*/
     glutPostRedisplay();
     
 }
@@ -701,6 +710,9 @@ int main(int argc, char* argv[])
 	glutMotionFunc(processMouseMoved);
 	glutPassiveMotionFunc(processPassiveMouseMoved);
 	GLUI_Master.set_glutSpecialFunc( NULL );
+    
+    
+    glutTimerFunc(mili, myUpdate, 0);
     
     
 	/*** Create the bottom subwindow ***/
