@@ -479,15 +479,15 @@ void draw_guillotine_sides(double x, double y, double z){
 	//Partes de lado
     
 	glPushMatrix();
-    glTranslated(x-carpet_width+guill_side_size/2, y+carpet_height+1, z+guill_position);
+    glTranslated(x-carpet_width+guill_side_size/2, y+carpet_height+1.5, z+guill_position);
     glTranslated(0.0, 0.0, -20.0);
-    myBox(guill_side_size, 4, guill_side_size);
+    myBox(guill_side_size, 3, guill_side_size);
 	glPopMatrix();
     
 	glPushMatrix();
-    glTranslated(x-guill_side_size/2, y+carpet_height+1, z+guill_position);
+    glTranslated(x-guill_side_size/2, y+carpet_height+1.5, z+guill_position);
     glTranslated(0.0, 0.0, -20.0);
-    myBox(guill_side_size, 4, guill_side_size);
+    myBox(guill_side_size, 3, guill_side_size);
 	glPopMatrix();
 }
 
