@@ -23,6 +23,9 @@ double impostor_height=50.0;
 double impostor_width=impostor_height*1.6;
 double number_of_tiles_per_unit=0.2;
 
+double get_room_height(){
+    return room_height;
+}
 
 double get_door_distance(){
     return small_wall_part1;
@@ -291,15 +294,15 @@ void draw_floor(double x, double y, double z){
     glMap2d(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 2, 1.0, 0.0, 2*3, 2, &grid2x2[0][0]);
     glMap2f(GL_MAP2_NORMAL,   0.0, 1.0, 3, 2,  0.0, 1.0, 6, 2,  &nrmlcompon[0][0]);
     glMap2f(GL_MAP2_TEXTURE_COORD_2,  0.0, 1.0, 2, 2,  0.0, 1.0, 4, 2,  &textpoints[0][0]);
-    glMapGrid2d( 200, 0.0, 1.0,
-                80, 0.0, 1.0);
+    glMapGrid2d( 80, 0.0, 1.0,
+                200, 0.0, 1.0);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 6);
     
     
     glEvalMesh2(GL_FILL,
-                0, 200,  
-                0, 80);  
+                0, 80,  
+                0, 200);  
     glDisable(GL_MAP2_VERTEX_3);
     glDisable(GL_MAP2_NORMAL);
     glDisable(GL_MAP2_TEXTURE_COORD_2);

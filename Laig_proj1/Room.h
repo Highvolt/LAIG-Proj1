@@ -42,4 +42,5 @@ void draw_floor(double x, double y, double z);
 void draw_impostors(double x,double y, double z);
 double get_door_distance();
 double get_doorwidth();
+double get_room_height();
 #endif
