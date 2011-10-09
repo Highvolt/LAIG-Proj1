@@ -13,6 +13,10 @@ double candleheight(){
     return robot_height+rims_size/2+5;
 }
 
+double candleradius(){
+    return candle_radius;
+}
+
 void draw_robot(double x, double y, double z){
     glPushMatrix();
     glTranslated(x,y+rims_size/2 , z);

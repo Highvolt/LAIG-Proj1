@@ -14,3 +14,4 @@ void draw_wheel();
 void draw_candle(double x, double y,double z);
 void draw_wheels(double x,double y,double z);
 double candleheight();
+double candleradius();

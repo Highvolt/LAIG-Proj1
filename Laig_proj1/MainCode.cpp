@@ -285,7 +285,7 @@ void display(void)
 	glPopMatrix();
     */
 	
-    
+    light0y=get_room_height();
 	// Actualizacao da posicao da fonte de luz...
 	light0_position[0] = light0x;	// por razoes de eficiencia, os restantes 
 	light0_position[1] = light0y;	// parametros _invariaveis_ da LIGHT0 mantem os valores
@@ -302,9 +302,9 @@ void display(void)
     glPushMatrix();
     glTranslated(robot_x-5.5/2, robot_y, robot_z-5.5/2);
     glRotated(robot_angle, 0, 1, 0);
-    glTranslated(5.5, candleheight(), 5.5/2);
+    glTranslated(5.5+candleradius()*2, candleheight()+candleradius(), 5.5/2);
     glLightfv(GL_LIGHT1, GL_POSITION, spotlight_position);
-    
+    /*
     
     //esfera da luz do robot
     glColor3f(1.0,1.0,0.0);		// cor amarela
@@ -315,14 +315,14 @@ void display(void)
     glPopMatrix();
     gluQuadricOrientation(glQ, GLU_OUTSIDE);
     
-    
+    */
     
     glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 20.0);
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spotlight_direction);
     //glLightfv(GL_LIGHT1, GL_POSITION, spotlight_position);
     
 	glPopMatrix();
-    
+    /*
 	// ... e da esfera que a simboliza
 	glColor3f(1.0,1.0,0.0);		// cor amarela
 	gluQuadricOrientation( glQ, GLU_INSIDE);
@@ -333,7 +333,7 @@ void display(void)
 	gluQuadricOrientation( glQ, GLU_OUTSIDE);
 
     
-    
+    */
     
 	//glDisable(GL_COLOR_MATERIAL);
 	// Definicao de material a usar daqui em diante (valores declarados acima)
